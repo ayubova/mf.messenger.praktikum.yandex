@@ -1,0 +1,10 @@
+@import url('__empty/message-list__empty.css');
+
+.message-list {
+	padding: 10px 20px;
+	height: 100%;
+	width: 75%;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+}

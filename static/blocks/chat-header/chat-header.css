@@ -1,0 +1,8 @@
+@import url(__profile/chat-header__profile.css);
+@import url(__arrow-right/chat-header__arrow-right.css);
+
+.chat-header {
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+}

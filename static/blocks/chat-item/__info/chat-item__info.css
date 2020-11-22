@@ -1,0 +1,6 @@
+.chat-item__info {
+	display: flex;
+	flex-direction: column;
+	height: 46px;
+	justify-content: space-between;
+}

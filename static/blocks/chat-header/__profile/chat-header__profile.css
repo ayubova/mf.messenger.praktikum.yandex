@@ -1,0 +1,6 @@
+.chat-header__profile {
+	cursor: pointer;
+	color: #999999;
+	align-self: flex-end;
+	margin-bottom: 24px;
+}

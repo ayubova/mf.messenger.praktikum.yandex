@@ -1,0 +1,7 @@
+.message-header__button {
+	display: flex;
+	justify-content: center;
+	cursor: pointer;
+	height: 16px;
+	width: 16px;
+}

@@ -1,0 +1,12 @@
+.profile__avatar {
+	margin-top: 80px;
+	width: 130px;
+	height: 130px;
+	border-radius: 50%;
+	background: #efefef;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	flex-shrink: 0;
+}

@@ -1,0 +1,10 @@
+.message-container__sent {
+	max-width: 50%;
+	padding: 11px;
+	background-color: #e4edfd;
+	border-radius: 12px;
+	align-self: flex-end;
+	margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+}

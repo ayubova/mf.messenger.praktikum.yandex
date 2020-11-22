@@ -1,0 +1,10 @@
+@import url('__new-message/message-footer__new-message.css');
+@import url('__attach-button/message-footer__attach-button.css');
+@import url('__send-button/message-footer__send-button.css');
+
+.message-footer {
+	display: flex;
+	border-top: 1px solid #eaeaea;
+	height: 46px;
+	align-items: center;
+}

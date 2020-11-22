@@ -1,0 +1,14 @@
+@import url('./__input/profile__input-item__input.css');
+@import url('./__button/profile__input-item__button.css');
+
+.profile__input-item {
+	width: 510px;
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	padding: 10px 0;
+}
+
+.profile__input-item:not(:last-child) {
+	border-bottom: 1px solid #eaeaea;
+}

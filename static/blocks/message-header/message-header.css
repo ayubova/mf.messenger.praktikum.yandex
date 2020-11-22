@@ -1,0 +1,10 @@
+@import url('__avatar/message-header__avatar.css');
+@import url('__name/message-header__name.css');
+@import url('__button/message-header__button.css');
+
+.message-header {
+	height: 46px;
+	display: flex;
+	border-bottom: 1px solid #eaeaea;
+	align-items: center;
+}

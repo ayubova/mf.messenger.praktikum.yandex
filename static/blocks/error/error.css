@@ -1,0 +1,12 @@
+@import url('./__back-link/error__back-link.css');
+@import url('./__message/error__message.css');
+@import url('./__title/error__title.css');
+
+.error {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+	height: 200px;
+	justify-content: space-between;
+}

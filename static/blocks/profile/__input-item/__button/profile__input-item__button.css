@@ -1,0 +1,5 @@
+@import url('./_highlighted/profile__input-item__button_hightlighted.css');
+
+.profile__input-item__button {
+	cursor: pointer;
+}

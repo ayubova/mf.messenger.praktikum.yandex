@@ -1,0 +1,10 @@
+.message-container__received {
+	align-self: flex-start;
+	max-width: 50%;
+	background-color: #f8f8f8;
+	border-radius: 12px;
+	padding: 11px;
+	margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+}

@@ -1,0 +1,7 @@
+.chat-item__avatar {
+	width: 47px;
+	height: 47px;
+	background: #efefef;
+	border-radius: 50%;
+	flex-shrink: 0;
+}

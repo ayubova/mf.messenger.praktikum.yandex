@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles/normalize.css" />
+		<link rel="stylesheet" href="styles/style.css" />
+		<link rel="stylesheet" href="pages/auth.css" />
+		<title>Вход</title>
+	</head>
+	<body>
+		<main class="card">
+			<h3 class="card__title">Вход</h3>
+			<form class="card__form">
+				<div class="input-field">
+					<p class="input-field__error input-field__error_hidden">Неверный логин</p>
+					<input type="text" id="login" class="input-field__input" placeholder=" " />
+					<label for="login" class="input-field__label">Логин</label>
+				</div>
+				<div class="input-field">
+					<p class="input-field__error input-field__error_hidden">Неверный пароль</p>
+					<input type="password" id="password" class="input-field__input" placeholder=" " />
+					<label for="password" class="input-field__label">Пароль</label>
+				</div>
+				<div class="card__form_grow"></div>
+				<button type="submit" class="button">Авторизоваться</button>
+				<a href="" class="card__link">Нет аккаунта?</a>
+			</form>
+		</main>
+	</body>
+</html>

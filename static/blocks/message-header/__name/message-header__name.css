@@ -1,0 +1,7 @@
+.message-header__name {
+	padding-left: 8px;
+	align-self: center;
+	font-size: 14px;
+	color: #1e1e1e;
+	flex-grow: 1;
+}

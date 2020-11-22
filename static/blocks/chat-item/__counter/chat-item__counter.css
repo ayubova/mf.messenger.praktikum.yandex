@@ -1,0 +1,12 @@
+.chat-item__counter {
+	font-size: 12px;
+	line-height: 12px;
+	color: #fff;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	background-color: #3d3d3d;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

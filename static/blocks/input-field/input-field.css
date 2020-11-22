@@ -1,0 +1,42 @@
+@import url(__error/input-field__error.css);
+@import url(__error/_hidden/input-field__error_hidden.css);
+@import url(__input/input-field__input.css);
+@import url(__label/input-field__label.css);
+
+.input-field {
+	display: flex;
+	flex-flow: column-reverse;
+	margin-bottom: 1em;
+	width: 100%;
+}
+
+.input-field__label,
+.input-field__input {
+	transition: all 0.2s;
+	touch-action: manipulation;
+}
+
+.input-field__input:placeholder-shown + .input-field__label {
+	cursor: text;
+	max-width: 66.66%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	transform-origin: left bottom;
+	transform: translate(0, 20px) scale(1.5);
+}
+
+::-webkit-input-placeholder {
+	opacity: 0;
+	transition: inherit;
+}
+
+.input-field__input:focus::-webkit-input-placeholder {
+	opacity: 1;
+}
+
+.input-field__input:not(:placeholder-shown) + .input-field__label,
+.input-field__input:focus + .input-field__label {
+	transform: translate(0, 0) scale(1);
+	cursor: pointer;
+}

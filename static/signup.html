@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles/normalize.css" />
+		<link rel="stylesheet" href="styles/style.css" />
+		<link rel="stylesheet" href="pages/signup.css" />
+		<title>Регистрация</title>
+	</head>
+	<body>
+		<main class="card">
+			<h3 class="card__title">Регистрация</h3>
+			<form class="card__form">
+				<div class="input-field">
+					<p class="input-field__error input-field__error_hidden">Неверная почта</p>
+					<input type="email" id="email" class="input-field__input" placeholder=" " />
+					<label for="email" class="input-field__label">Почта</label>
+				</div>
+
+				<div class="input-field">
+					<p class="input-field__error input-field__error_hidden">Неверный логин</p>
+					<input type="text" id="login" class="input-field__input" placeholder=" " />
+					<label for="login" class="input-field__label">Логин</label>
+				</div>
+
+				<div class="input-field">
+					<p class="input-field__error input-field__error_hidden">Обязательное поле</p>
+					<input type="text" id="first_name" class="input-field__input" placeholder=" " />
+					<label for="first_name" class="input-field__label">Имя</label>
+				</div>
+				<div class="input-field">
+					<p class="input-field__error input-field__error_hidden">Обязательное поле</p>
+					<input type="text" id="second_name" class="input-field__input" placeholder=" " />
+					<label for="second_name" class="input-field__label">Фамилия</label>
+				</div>
+				<div class="input-field">
+					<p class="input-field__error input-field__error_hidden">Неверный телефон</p>
+					<input type="tel" id="phone" class="input-field__input" placeholder=" " />
+					<label for="phone" class="input-field__label">Телефон</label>
+				</div>
+				<div class="input-field">
+					<p class="input-field__error input-field__error_hidden">Неверный пароль</p>
+					<input type="password" id="password" class="input-field__input" placeholder=" " />
+					<label for="password" class="input-field__label">Пароль</label>
+				</div>
+				<div class="input-field">
+					<p class="input-field__error input-field__error_hidden">Неверный пароль</p>
+					<input type="password" id="confirm_password" class="input-field__input" placeholder=" " />
+					<label for="confirm_password" class="input-field__label">Пароль (еще раз)</label>
+				</div>
+
+				<div class="card__form_grow"></div>
+				<button type="submit" class="button">Зарегистрироваться</button>
+				<a href="" class="card__link">Войти?</a>
+			</form>
+		</main>
+	</body>
+</html>
