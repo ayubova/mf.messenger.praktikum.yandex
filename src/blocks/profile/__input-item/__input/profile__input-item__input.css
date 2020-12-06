@@ -1,0 +1,11 @@
+.profile__input-item__input {
+	border: 0;
+	background: unset;
+	width: 50%;
+	height: 24px;
+}
+
+.profile__input-item__input:focus {
+	outline: 0;
+	border-bottom: 1px solid #666;
+}

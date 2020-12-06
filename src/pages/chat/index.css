@@ -1,0 +1,17 @@
+@import url(../../styles/normalize.css);
+@import url(../../styles/style.css);
+@import url(../../blocks/chat-list/chat-list.css);
+@import url(../../blocks/message-list/message-list.css);
+@import url(../../blocks/chat-header/chat-header.css);
+@import url(../../blocks/search/search.css);
+@import url(../../blocks/chat-item/chat-item.css);
+@import url(../../blocks/message-header/message-header.css);
+@import url(../../blocks/message-container/message-container.css);
+@import url(../../blocks/message-footer/message-footer.css);
+@import url(../../blocks/menu/menu.css);
+
+.chat {
+	display: flex;
+	width: 100%;
+	height: 100vh;
+}
