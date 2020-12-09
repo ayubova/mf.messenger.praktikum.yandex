@@ -8,7 +8,7 @@ export function render(query: string, block: Component<any>) {
 	return root;
 }
 
-export const addHandlerForm = (form: HTMLFormElement, handler: any): void => {
+export const addHandlerForm = (form: HTMLFormElement, handler: (form: HTMLFormElement) => void): void => {
 	form.addEventListener('submit', function (evt: Event) {
 		evt.preventDefault();
 		handler(form);
@@ -20,3 +20,7 @@ export const logFormData = (form: HTMLFormElement) => {
 		console.log(pair[0] + ': ' + pair[1]);
 	}
 };
+
+export const showInputError = (element: HTMLElement) => element.classList.add('input-field__error_hidden');
+
+export const hideInputError = (element: HTMLElement) => element.classList.add('input-field__error_hidden');

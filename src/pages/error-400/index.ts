@@ -1,4 +1,4 @@
-import {ErrorBlock} from '../../components/error/index.js';
+import ErrorBlock from '../../components/error/index.js';
 import {render} from '../../scripts/utils.js';
 
 const error404PageComponent = new ErrorBlock({

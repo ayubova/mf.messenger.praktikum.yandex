@@ -6,7 +6,7 @@ export class Component<Props> {
 		props: Props;
 	};
 	private _element: null | HTMLElement = null;
-	public eventBus: () => EventBus;
+	public eventBus: EventBus;
 	public props: Props;
 
 	static EVENTS = {
@@ -31,7 +31,7 @@ export class Component<Props> {
 
 		this.props = this._makePropsProxy(props);
 
-		this.eventBus = () => eventBus;
+		this.eventBus = eventBus;
 
 		this._registerEvents(eventBus);
 		eventBus.emit(Component.EVENTS.INIT);
@@ -50,12 +50,12 @@ export class Component<Props> {
 
 	init() {
 		this._createResources();
-		this.eventBus().emit(Component.EVENTS.FLOW_CDM);
+		this.eventBus.emit(Component.EVENTS.FLOW_CDM);
 	}
 
 	_componentDidMount() {
 		this.componentDidMount();
-		this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
+		this.eventBus.emit(Component.EVENTS.FLOW_RENDER);
 	}
 
 	componentDidMount(oldProps?: Props) {}
@@ -116,7 +116,7 @@ export class Component<Props> {
 
 				// Запускаем обновление компоненты
 				// Плохой cloneDeep, в след итерации нужно заставлять добавлять cloneDeep им самим
-				self.eventBus().emit(Component.EVENTS.FLOW_CDU, {...target}, target);
+				self.eventBus.emit(Component.EVENTS.FLOW_CDU, {...target}, target);
 				return true;
 			},
 			deleteProperty() {

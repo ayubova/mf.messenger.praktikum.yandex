@@ -1,5 +1,5 @@
 import {ProfilePage} from './component.js';
-import {render, addHandlerForm, logFormData} from '../../scripts/utils.js';
+import {render, addHandlerForm, logFormData, showInputError, hideInputError} from '../../scripts/utils.js';
 import Button from '../../components/button/index.js';
 import {FormValidator} from '../../scripts/FormValidator.js';
 
@@ -62,7 +62,13 @@ render('#root', profilePageComponent);
 const profileForm = profilePageComponent.element?.querySelector(`form`);
 
 if (profileForm) {
-	const profileFormValidator = new FormValidator(profileForm, profileFormInputs);
+	const profileFormValidator = new FormValidator(
+		profileForm,
+		profileFormInputs,
+		showInputError,
+		hideInputError,
+		'.input-field__error'
+	);
 	profileFormValidator.on();
 	addHandlerForm(profileForm, logFormData);
 }

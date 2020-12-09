@@ -1,5 +1,5 @@
-@import url(../../blocks/profile/profile.css);
-@import url(../../blocks/left-menu/left-menu.css);
-@import url(../../blocks/button/button.css);
-@import url(../../blocks/popup/popup.css);
-@import url(../../blocks/input-field/input-field.css);
+@import url(../../styles/blocks/profile/profile.css);
+@import url(../../styles/blocks/left-menu/left-menu.css);
+@import url(../../styles/blocks/button/button.css);
+@import url(../../styles/blocks/popup/popup.css);
+@import url(../../styles/blocks/input-field/input-field.css);

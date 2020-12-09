@@ -1,6 +1,6 @@
 import {AuthPage} from './component.js';
 import Button from '../../components/button/index.js';
-import {render, addHandlerForm, logFormData} from '../../scripts/utils.js';
+import {render, addHandlerForm, logFormData, showInputError, hideInputError} from '../../scripts/utils.js';
 import {FormValidator} from '../../scripts/FormValidator.js';
 
 const authFormInputs = [
@@ -32,6 +32,12 @@ const authForm = authPageComponent.element?.querySelector(`form`);
 
 if (authForm) {
 	addHandlerForm(authForm, logFormData);
-	const authFormValidator = new FormValidator(authForm, authFormInputs);
+	const authFormValidator = new FormValidator(
+		authForm,
+		authFormInputs,
+		showInputError,
+		hideInputError,
+		'.input-field__error'
+	);
 	authFormValidator.on();
 }

@@ -1,6 +1,6 @@
 import {SignupPage} from './component.js';
 import Button from '../../components/button/index.js';
-import {render, addHandlerForm, logFormData} from '../../scripts/utils.js';
+import {render, addHandlerForm, logFormData, showInputError, hideInputError} from '../../scripts/utils.js';
 import {FormValidator} from '../../scripts/FormValidator.js';
 
 const signupFormInputs = [
@@ -62,7 +62,13 @@ render('#root', signupPageComponent);
 const signupForm = signupPageComponent.element?.querySelector(`form`);
 
 if (signupForm) {
-	const signupFormValidator = new FormValidator(signupForm, signupFormInputs);
+	const signupFormValidator = new FormValidator(
+		signupForm,
+		signupFormInputs,
+		showInputError,
+		hideInputError,
+		'.input-field__error'
+	);
 	signupFormValidator.on();
 	addHandlerForm(signupForm, logFormData);
 }
