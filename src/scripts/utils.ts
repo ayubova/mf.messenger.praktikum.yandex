@@ -23,4 +23,4 @@ export const logFormData = (form: HTMLFormElement) => {
 
 export const showInputError = (element: HTMLElement) => element.classList.add('input-field__error_hidden');
 
-export const hideInputError = (element: HTMLElement) => element.classList.add('input-field__error_hidden');
+export const hideInputError = (element: HTMLElement) => element.classList.remove('input-field__error_hidden');
