@@ -1,74 +1,40 @@
-import {SignupPage} from './component.js';
+import template from './template.js';
+import {Component} from '../../scripts/Component.js';
+import {Input} from '../../types';
 import Button from '../../components/button/index.js';
-import {render, addHandlerForm, logFormData, showInputError, hideInputError} from '../../scripts/utils.js';
+import {addHandlerForm, logFormData, showInputError, hideInputError} from '../../scripts/utils.js';
 import {FormValidator} from '../../scripts/FormValidator.js';
-
-const signupFormInputs = [
-	{
-		name: 'email',
-		label: 'Почта',
-		errorMessage: 'Неверная почта',
-		validationRule: (i: string): boolean => !!i && /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i.test(i),
-	},
-	{
-		name: 'login',
-		label: 'Логин',
-		errorMessage: 'Неверный логин',
-		validationRule: (i: string): boolean => !!i && i.length > 2,
-	},
-	{
-		name: 'first_name',
-		label: 'Имя',
-		errorMessage: 'Обязательное поле',
-		validationRule: (i: string): boolean => !!i && i.length > 2,
-	},
-	{
-		name: 'second_name',
-		label: 'Фамилия',
-		errorMessage: 'Обязательное поле',
-		validationRule: (i: string): boolean => !!i && i.length > 2,
-	},
-	{
-		name: 'phone',
-		label: 'Телефон',
-		errorMessage: 'Неверный телефон',
-		validationRule: (i: string): boolean => !!i && i.length > 2,
-	},
-	{
-		name: 'password',
-		label: 'Пароль',
-		errorMessage: 'Неверный пароль',
-		validationRule: (i: string): boolean => !!i && i.length > 2,
-	},
-	{
-		name: 'confirm_password',
-		label: 'Пароль (еще раз)',
-		errorMessage: 'Неверный пароль',
-		validationRule: (i: string): boolean => !!i && i.length > 2,
-	},
-];
-
-const signupButton = new Button({child: 'Зарегистрироваться', type: 'submit'});
-if (signupButton.element) {
-	Handlebars.registerPartial('signup-button', signupButton.element.innerHTML);
+import {signupFormInputs} from './constants.js';
+interface Props {
+	inputs: Input[];
 }
 
-const signupPageComponent = new SignupPage({
-	inputs: signupFormInputs,
-});
+export class SignupPage extends Component<Props> {
+	constructor(props: Props) {
+		const signupButton = new Button({child: 'Зарегистрироваться', type: 'submit'});
+		if (signupButton.element) {
+			Handlebars.registerPartial('signup-button', signupButton.element.innerHTML);
+		}
+		super('div', props);
+	}
 
-render('#root', signupPageComponent);
+	componentDidMount() {
+		const signupForm = this.element?.querySelector(`form`);
 
-const signupForm = signupPageComponent.element?.querySelector(`form`);
+		if (signupForm) {
+			const signupFormValidator = new FormValidator(
+				signupForm,
+				signupFormInputs,
+				showInputError,
+				hideInputError,
+				'.input-field__error'
+			);
+			signupFormValidator.on();
+			addHandlerForm(signupForm, logFormData);
+		}
+	}
 
-if (signupForm) {
-	const signupFormValidator = new FormValidator(
-		signupForm,
-		signupFormInputs,
-		showInputError,
-		hideInputError,
-		'.input-field__error'
-	);
-	signupFormValidator.on();
-	addHandlerForm(signupForm, logFormData);
+	render() {
+		return template;
+	}
 }
