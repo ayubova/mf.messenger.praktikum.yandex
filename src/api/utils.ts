@@ -37,7 +37,7 @@ function getParams(data: PlainObject | [], parentKey?: string) {
 	return result;
 }
 
-export function queryString(data: PlainObject) {
+export function queryStringify(data: PlainObject) {
 	if (!isPlainObject(data)) {
 		throw new Error('input must be an object');
 	}

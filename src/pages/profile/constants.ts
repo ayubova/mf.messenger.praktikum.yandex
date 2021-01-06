@@ -28,7 +28,7 @@ export const profileFormInputs = [
 		validationRule: (i: string): boolean => !!i && i.length > 2,
 	},
 	{
-		name: 'chat_name',
+		name: 'display_name',
 		label: 'Имя в чате',
 		type: 'text',
 		errorMessage: 'Обязательное поле',
@@ -43,6 +43,26 @@ export const profileFormInputs = [
 	},
 ];
 
+export const passwordInputs = [
+	{
+		name: 'oldPassword',
+		label: 'Старый пароль',
+		type: 'password',
+		errorMessage: 'Обязательное поле',
+		validationRule: (i: string): boolean => !!i,
+	},
+	{
+		name: 'newPassword',
+		label: 'Новый пароль',
+		type: 'password',
+		errorMessage: 'Обязательное поле',
+		validationRule: (i: string): boolean => !!i,
+	},
+];
+
 export const props = {
 	inputs: profileFormInputs,
+	passwordInputs,
+	avatar: null,
+	state: 'view',
 };

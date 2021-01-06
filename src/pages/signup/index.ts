@@ -5,6 +5,8 @@ import Button from '../../components/button/index.js';
 import {addHandlerForm, logFormData, showInputError, hideInputError} from '../../scripts/utils.js';
 import {FormValidator} from '../../scripts/FormValidator.js';
 import {signupFormInputs} from './constants.js';
+import {signUp} from './api.js';
+
 interface Props {
 	inputs: Input[];
 }
@@ -16,9 +18,7 @@ export class SignupPage extends Component<Props> {
 			Handlebars.registerPartial('signup-button', signupButton.element.innerHTML);
 		}
 		super('div', props);
-	}
 
-	componentDidMount() {
 		const signupForm = this.element?.querySelector(`form`);
 
 		if (signupForm) {
@@ -27,7 +27,8 @@ export class SignupPage extends Component<Props> {
 				signupFormInputs,
 				showInputError,
 				hideInputError,
-				'.input-field__error'
+				'.input-field__error',
+				signUp
 			);
 			signupFormValidator.on();
 			addHandlerForm(signupForm, logFormData);

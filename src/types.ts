@@ -4,6 +4,7 @@ export interface Input {
 	errorMessage: string;
 	validationRule: (i: string) => boolean;
 	type?: string;
+	disabled?: boolean;
 }
 
 export interface ChatItem {

@@ -92,8 +92,11 @@ export class Component<Props> {
 		// либо сразу в DOM-элементы превращать из возвращать из compile DOM-ноду
 		if (this._element) {
 			this._element.innerHTML = Handlebars.compile(block)(this.props);
+			this.setEventListeners();
 		}
 	}
+
+	setEventListeners() {}
 
 	render() {}
 

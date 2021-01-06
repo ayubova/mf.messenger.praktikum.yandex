@@ -1,22 +1,26 @@
 import {Input} from '../types';
+import {getFormData} from './utils.js';
 export class FormValidator {
 	private inputs: Input[];
 	private formElement: HTMLFormElement;
 	private showInputError: (el: HTMLElement) => void;
 	private hideInputError: (el: HTMLElement) => void;
 	private errorFieldSelector: string;
+	private onSubmit: (data: Record<string, string | number>) => void;
 	constructor(
 		formElement: HTMLFormElement,
 		inputs: Input[],
 		showInputError: (el: HTMLElement) => void,
 		hideInputError: (el: HTMLElement) => void,
-		errorFieldSelector: string
+		errorFieldSelector: string,
+		onSubmit: (data: Record<string, string | number>) => void
 	) {
 		this.formElement = formElement;
 		this.inputs = inputs;
 		this.showInputError = showInputError;
 		this.hideInputError = hideInputError;
 		this.errorFieldSelector = errorFieldSelector;
+		this.onSubmit = onSubmit;
 	}
 
 	on() {
@@ -29,7 +33,9 @@ export class FormValidator {
 		this.formElement.addEventListener('submit', this.validateForm);
 	}
 
-	validateForm = () => {
+	validateForm = (e: any) => {
+		e.preventDefault();
+
 		const isFormValid = this.inputs.every(({name, validationRule}) => {
 			const inputElement = this.formElement.querySelector(`input[name=${name}`);
 			if (inputElement && inputElement instanceof HTMLInputElement) {
@@ -41,6 +47,10 @@ export class FormValidator {
 
 		if (submitButton) {
 			submitButton.disabled = !isFormValid;
+		}
+		if (isFormValid && e.type === 'submit') {
+			const formData = getFormData(this.formElement);
+			this.onSubmit(formData);
 		}
 	};
 

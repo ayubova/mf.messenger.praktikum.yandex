@@ -11,10 +11,24 @@ import {props as profileProps} from './pages/profile/constants.js';
 import {ChatPage} from './pages/chat/index.js';
 import {props as chatProps} from './pages/chat/constants.js';
 
-const router = new Router('#app');
-router.use('/auth', AuthPage, authProps).start();
-router.use('/signup', SignupPage, signupProps).start();
-router.use('/error-404', ErrorBlock, error404Props).start();
-router.use('/error-500', ErrorBlock, error500Props).start();
-router.use('/profile', ProfilePage, profileProps).start();
-router.use('/chat', ChatPage, chatProps).start();
+export const router = new Router('#app');
+
+export enum Routes {
+	auth = '/auth',
+	signup = '/signup',
+	error404 = '/error-404',
+	error500 = '/error-500',
+	profile = '/profile',
+	chat = '/chat',
+}
+
+export const PAGES = {
+	[Routes.auth]: {component: AuthPage, initialProps: authProps},
+	[Routes.signup]: {component: SignupPage, initialProps: signupProps},
+	[Routes.error404]: {component: ErrorBlock, initialProps: error404Props},
+	[Routes.error500]: {component: ErrorBlock, initialProps: error500Props},
+	[Routes.profile]: {component: ProfilePage, initialProps: profileProps},
+	[Routes.chat]: {component: ChatPage, initialProps: chatProps},
+};
+
+Object.entries(PAGES).forEach(([path, {component, initialProps}]) => router.use(path, component, initialProps).start());

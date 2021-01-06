@@ -1,5 +1,7 @@
 // @ts-nocheck
 import {queryStringify} from './utils.js';
+import {API_URL} from './constants.js';
+import {router, Routes} from '../index.js';
 
 const METHODS = {
 	GET: 'GET',
@@ -8,8 +10,11 @@ const METHODS = {
 	DELETE: 'DELETE',
 };
 
-class HTTPTransport {
-	get = (url, options = {}) => {
+export class HTTPTransport {
+	constructor(base) {
+		this._base = base;
+	}
+	get = (url, options = {}): any => {
 		return this.request(url, {...options, method: METHODS.GET}, options.timeout);
 	};
 
@@ -25,8 +30,9 @@ class HTTPTransport {
 		return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
 	};
 
-	request = (url, options = {}, timeout = 5000) => {
+	request = (url, options = {}, timeout = 5000): Promise<any> => {
 		const {headers = {}, method, data} = options;
+		url = `${this._base}/${url}`;
 
 		return new Promise(function (resolve, reject) {
 			if (!method) {
@@ -35,6 +41,7 @@ class HTTPTransport {
 			}
 
 			const xhr = new XMLHttpRequest();
+			xhr.withCredentials = true;
 			const isGet = method === METHODS.GET;
 
 			xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url);
@@ -43,9 +50,14 @@ class HTTPTransport {
 				xhr.setRequestHeader(key, headers[key]);
 			});
 
-			xhr.onload = function () {
-				if (xhr.status >= 200) {
-					resolve(xhr);
+			xhr.onload = () => {
+				if (xhr.status === 200) {
+					resolve(xhr.response);
+				} else if (xhr.status == 401) {
+					router.go(Routes.auth);
+					reject(xhr.response);
+				} else {
+					reject(xhr.response);
 				}
 			};
 
@@ -57,9 +69,14 @@ class HTTPTransport {
 
 			if (isGet || !data) {
 				xhr.send();
-			} else {
+			} else if (data instanceof FormData) {
 				xhr.send(data);
+			} else {
+				xhr.setRequestHeader('Content-Type', 'application/json');
+				xhr.send(JSON.stringify(data));
 			}
 		});
 	};
 }
+
+export const api = new HTTPTransport(API_URL);
