@@ -3,7 +3,7 @@ import {Component} from '../../scripts/Component.js';
 import Button from '../../components/button/index.js';
 import {ChatItem, ChatMessage} from '../../types';
 import {router, Routes} from '../../index.js';
-import {getChats, createChat} from './api.js';
+import {getChats, createChat, searchUser, addUsers, deleteUsers} from './api.js';
 interface Props {
 	chatItems: ChatItem[];
 	chatMessages: ChatMessage[];
@@ -56,6 +56,34 @@ export class ChatPage extends Component<Props> {
 					getChats().then((res: string) => {
 						this.setProps({...this.props, chatItems: JSON.parse(res)});
 					});
+				});
+			}
+		});
+
+		const addUserForm = this.element?.querySelector('#add-user-form');
+		const addUserInput = addUserForm?.querySelector('input');
+
+		addUserForm?.addEventListener('submit', (event: any) => {
+			event.preventDefault();
+			// TODO: add form validator
+			if (addUserInput?.value) {
+				searchUser(addUserInput.value).then((res) => {
+					const userIds = JSON.parse(res).map((user: any) => user.id);
+					addUsers(userIds, this.props.currentChat.id);
+				});
+			}
+		});
+
+		const deleteUserForm = this.element?.querySelector('#delete-user-form');
+		const deleteUserInput = deleteUserForm?.querySelector('input');
+
+		deleteUserForm?.addEventListener('submit', (event: any) => {
+			event.preventDefault();
+			// TODO: add form validator
+			if (deleteUserInput?.value) {
+				searchUser(deleteUserInput.value).then((res) => {
+					const userIds = JSON.parse(res).map((user: any) => user.id);
+					deleteUsers(userIds, this.props.currentChat.id);
 				});
 			}
 		});

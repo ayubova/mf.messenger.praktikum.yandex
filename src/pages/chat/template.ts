@@ -35,7 +35,7 @@ export default `
 				</div>
                 {{/each}}
                 </div>
-		
+		{{#if currentChat}}
 			<div class="message-list">
 				<header class="message-header">
 					<div class="chat-item__avatar message-header__avatar"></div>
@@ -115,6 +115,7 @@ export default `
 						</form>
 					</div>
 				</div>
+				{{/if}}
 			
 		</main>
     `;
