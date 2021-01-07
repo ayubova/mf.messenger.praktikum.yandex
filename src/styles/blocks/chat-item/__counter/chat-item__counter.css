@@ -1,4 +1,5 @@
 .chat-item__counter {
+	visibility: hidden;
 	font-size: 12px;
 	line-height: 12px;
 	color: #fff;

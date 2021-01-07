@@ -1,62 +1,3 @@
-export const chatItems = [
-	{
-		userName: 'Alex',
-		avatar: '',
-		content: 'Друзья, у меня для вас особенный выпуск новостей!',
-		dateTime: '10:07',
-		unreadCounter: 2,
-	},
-	{
-		userName: 'Alex',
-		avatar: 'src/images/cat.jpg',
-		content: 'Друзья, у меня для вас особенный выпуск новостей!',
-		dateTime: '10:07',
-		unreadCounter: 3,
-	},
-	{
-		userName: 'Alex',
-		avatar: 'src/images/cat.jpg',
-		content: 'Друзья, у меня для вас особенный выпуск новостей!',
-		dateTime: '10:07',
-		unreadCounter: 1,
-	},
-	{
-		userName: 'Alex',
-		avatar: 'src/images/cat.jpg',
-		content: 'Друзья, у меня для вас особенный выпуск новостей!',
-		dateTime: '10:07',
-		unreadCounter: 5,
-	},
-	{
-		userName: 'Alex',
-		avatar: 'src/images/cat.jpg',
-		content: 'Друзья, у меня для вас особенный выпуск новостей!',
-		dateTime: '10:07',
-		unreadCounter: 1,
-	},
-	{
-		userName: 'Alex',
-		avatar: 'src/images/cat.jpg',
-		content: 'Друзья, у меня для вас особенный выпуск новостей!',
-		dateTime: '10:07',
-		unreadCounter: 4,
-	},
-	{
-		userName: 'Alex',
-		avatar: 'src/images/cat.jpg',
-		content: 'Друзья, у меня для вас особенный выпуск новостей!',
-		dateTime: '10:07',
-		unreadCounter: 2,
-	},
-	{
-		userName: 'Alex',
-		avatar: 'src/images/cat.jpg',
-		content: 'Друзья, у меня для вас особенный выпуск новостей!',
-		dateTime: '10:07',
-		unreadCounter: 1,
-	},
-];
-
 const chatMessages = [
 	{
 		content:
@@ -81,7 +22,6 @@ const chatMessages = [
 ];
 
 export const props = {
-	chatItems,
 	chatMessages,
 	chatUser: 'Alex',
 };

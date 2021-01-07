@@ -17,3 +17,10 @@
 	line-height: 0;
 	visibility: hidden;
 }
+
+.popup-form {
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}

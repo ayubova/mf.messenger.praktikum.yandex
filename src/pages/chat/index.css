@@ -3,15 +3,17 @@
 @import url(../../styles/blocks/chat-list/chat-list.css);
 @import url(../../styles/blocks/message-list/message-list.css);
 @import url(../../styles/blocks/chat-header/chat-header.css);
+@import url(../../styles/blocks/chat-input/chat-input.css);
 @import url(../../styles/blocks/search/search.css);
 @import url(../../styles/blocks/chat-item/chat-item.css);
 @import url(../../styles/blocks/message-header/message-header.css);
 @import url(../../styles/blocks/message-container/message-container.css);
 @import url(../../styles/blocks/message-footer/message-footer.css);
 @import url(../../styles/blocks/menu/menu.css);
+@import url(../../styles/blocks/input-field/input-field.css);
 
 .chat {
 	display: flex;
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
 }

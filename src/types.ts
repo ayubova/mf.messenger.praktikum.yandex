@@ -8,11 +8,10 @@ export interface Input {
 }
 
 export interface ChatItem {
-	userName: string;
+	id: number;
 	avatar?: string;
-	content: string;
-	dateTime: string;
-	unreadCounter: number;
+	title: string;
+	created_by: string;
 }
 
 export interface ChatMessage {

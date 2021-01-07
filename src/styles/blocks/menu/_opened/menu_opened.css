@@ -1,4 +1,4 @@
 .menu_opened {
-	visibility: visible;
+	visibility: visible !important;
 	opacity: 1;
 }

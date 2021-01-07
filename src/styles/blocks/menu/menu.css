@@ -1,7 +1,9 @@
 @import url('./__users-menu/menu__users-menu.css');
 @import url('./__attach-menu/menu__attach-menu.css');
+@import url('./_opened/menu_opened.css');
 
 .menu {
+	visibility: hidden;
 	position: relative;
 	z-index: 1;
 }
