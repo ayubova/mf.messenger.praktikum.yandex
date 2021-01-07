@@ -1,19 +1,19 @@
 import {Input} from '../types';
 import {getFormData} from './utils.js';
-export class FormValidator {
+export class FormValidator<T = Record<string, string | number>> {
 	private inputs: Input[];
 	private formElement: HTMLFormElement;
 	private showInputError: (el: HTMLElement) => void;
 	private hideInputError: (el: HTMLElement) => void;
 	private errorFieldSelector: string;
-	private onSubmit: (data: Record<string, string | number>) => void;
+	private onSubmit: (data: T) => void;
 	constructor(
 		formElement: HTMLFormElement,
 		inputs: Input[],
 		showInputError: (el: HTMLElement) => void,
 		hideInputError: (el: HTMLElement) => void,
 		errorFieldSelector: string,
-		onSubmit: (data: Record<string, string | number>) => void
+		onSubmit: (data: T) => void
 	) {
 		this.formElement = formElement;
 		this.inputs = inputs;

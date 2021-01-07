@@ -1,3 +1,36 @@
+export interface Input {
+	name: string;
+	label: string;
+	errorMessage: string;
+	validationRule: (i: string) => boolean;
+	type?: string;
+	disabled?: boolean;
+}
+
+export enum States {
+	view = 'view',
+	changeProfile = 'changeProfile',
+	changePassword = 'changePassword',
+}
+
+export type AnyState = keyof typeof States;
+
+export interface User {
+	id: number;
+	avatar: string | null;
+	display_name: string;
+	first_name: string;
+	second_name: string;
+	email: string;
+	login: string;
+	phone: string;
+}
+
+export interface ChangePasswordPayload {
+	oldPassword: string;
+	newPassword: string;
+}
+
 export const profileFormInputs = [
 	{
 		name: 'email',
@@ -64,5 +97,5 @@ export const props = {
 	inputs: profileFormInputs,
 	passwordInputs,
 	avatar: null,
-	state: 'view',
+	state: States.view,
 };

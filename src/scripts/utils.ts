@@ -22,7 +22,7 @@ export const logFormData = (form: HTMLFormElement) => {
 	}
 };
 
-export const getFormData = (form: HTMLFormElement) => {
+export const getFormData = (form: HTMLFormElement): any => {
 	let result = {};
 	const formData = new FormData(form);
 	for (const pair of formData.entries()) {
