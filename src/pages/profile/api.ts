@@ -1,6 +1,6 @@
 import {api} from '../../api/httpTransport.js';
 import {router, Routes} from '../../index.js';
-import {User} from './constants.js';
+import {User, ChangePasswordPayload} from './constants.js';
 
 const USER_ENDPOINT = 'auth/user';
 const LOGOUT_ENDPOINT = 'auth/logout';
@@ -10,7 +10,7 @@ const UPLOAD_AVATAR_ENDPOINT = 'user/profile/avatar';
 
 export const getUser = (): Promise<User> => api.get(USER_ENDPOINT).catch(alert);
 export const updateUser = (data: User): Promise<User> => api.put(UPDATE_USER_ENDPOINT, {data}).catch(alert);
-export const changePassword = (data: any) => api.put(CHANGE_PASSWORD_ENDPOINT, {data}).catch(alert);
+export const changePassword = (data: ChangePasswordPayload) => api.put(CHANGE_PASSWORD_ENDPOINT, {data}).catch(alert);
 export const logout = () =>
 	api
 		.post(LOGOUT_ENDPOINT)

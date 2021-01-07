@@ -17,6 +17,7 @@ export interface Props {
 }
 export class ProfilePage extends Component<Props> {
 	private handleSubmit: (data: ChangePasswordPayload | User) => void;
+	private setState: (state: AnyState) => void;
 	constructor(props: Props) {
 		Handlebars.registerHelper('isChangePassword', (state: AnyState) => state === States.changePassword);
 		Handlebars.registerHelper('isViewOnly', (state: AnyState) => state === States.view);
@@ -27,6 +28,7 @@ export class ProfilePage extends Component<Props> {
 		}
 		super('div', props);
 		this.handleSubmit = this._handleSubmit.bind(this);
+		this.setState = this._setState.bind(this);
 	}
 
 	setEventListeners() {
@@ -57,12 +59,12 @@ export class ProfilePage extends Component<Props> {
 		}
 		this.element?.querySelector('#logout-button')?.addEventListener('click', logout);
 		this.element?.querySelector('.left-menu__back-button')?.addEventListener('click', () => router.back());
-		this.element?.querySelector('#update-user-button')?.addEventListener('click', () => {
-			this.setProps({...this.props, state: States.changeProfile});
-		});
-		this.element?.querySelector('#change-password-button')?.addEventListener('click', () => {
-			this.setProps({...this.props, state: States.changePassword});
-		});
+		this.element
+			?.querySelector('#update-user-button')
+			?.addEventListener('click', () => this.setState(States.changeProfile));
+		this.element
+			?.querySelector('#change-password-button')
+			?.addEventListener('click', () => this.setState(States.changePassword));
 		this.element?.querySelector('.profile__avatar')?.addEventListener('click', () => {
 			getFileFromUser()
 				.then((files: FileList) => uploadAvatar(files[0]))
@@ -72,9 +74,7 @@ export class ProfilePage extends Component<Props> {
 
 	_handleSubmit(data: ChangePasswordPayload | User) {
 		if (this.props.state === States.changePassword) {
-			changePassword(data as ChangePasswordPayload).then(() =>
-				this.setProps({...this.props, state: States.view})
-			);
+			changePassword(data as ChangePasswordPayload).then(() => this.setState(States.view));
 		}
 		if (this.props.state === States.changeProfile) {
 			updateUser(data as User)
@@ -85,8 +85,12 @@ export class ProfilePage extends Component<Props> {
 					}));
 					this.setProps({...this.props, inputs, avatar: user.avatar && addBaseURL(user.avatar)});
 				})
-				.then(() => this.setProps({...this.props, state: States.view}));
+				.then(() => this.setState(States.view));
 		}
+	}
+
+	_setState(state: AnyState) {
+		this.setProps({...this.props, state});
 	}
 
 	componentDidMount() {
