@@ -51,13 +51,17 @@ export class HTTPTransport {
 			});
 
 			xhr.onload = () => {
+				let {response} = xhr;
+				try {
+					response = JSON.parse(response);
+				} catch {}
 				if (xhr.status === 200) {
-					resolve(xhr.response);
+					resolve(response);
 				} else if (xhr.status == 401) {
 					router.go(Routes.auth);
-					reject(xhr.response);
+					reject(response);
 				} else {
-					reject(xhr.response);
+					reject(response);
 				}
 			};
 

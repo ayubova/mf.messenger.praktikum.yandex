@@ -1,7 +1,7 @@
 import template from './template.js';
 import {Component} from '../../scripts/Component.js';
 import Button from '../../components/button/index.js';
-import {ChatItem, ChatMessage} from '../../types';
+import {ChatMessage, ChatItem} from '../../types';
 import {router, Routes} from '../../index.js';
 import {getChats, createChat, searchUser, addUsers, deleteUsers} from './api.js';
 interface Props {
@@ -13,9 +13,7 @@ interface Props {
 }
 export class ChatPage extends Component<Props> {
 	constructor(props: Props) {
-		Handlebars.registerHelper('isOwner', function (value) {
-			return value === 'sent';
-		});
+		Handlebars.registerHelper('isOwner', (value) => value === 'sent');
 		const addButton = new Button({child: 'Добавить', type: 'submit'});
 		if (addButton.element) {
 			Handlebars.registerPartial('add-button', addButton.element.innerHTML);
@@ -45,16 +43,17 @@ export class ChatPage extends Component<Props> {
 		this.element?.querySelector('.chat-header__add')?.addEventListener('click', () => {
 			this.element?.querySelector('#popup-add-chat')?.classList.add('popup_opened');
 		});
-		const form = this.element?.querySelector('#add-chat-form');
-		const input = form?.querySelector('input');
 
-		form?.addEventListener('submit', (event: any) => {
+		const addChatForm = this.element?.querySelector('#add-chat-form');
+		const addChatInput = addChatForm?.querySelector('input');
+
+		addChatForm?.addEventListener('submit', (event: any) => {
 			event.preventDefault();
 			// TODO: add form validator
-			if (input?.value) {
-				createChat(input.value).then(() => {
-					getChats().then((res: string) => {
-						this.setProps({...this.props, chatItems: JSON.parse(res)});
+			if (addChatInput?.value) {
+				createChat(addChatInput.value).then(() => {
+					getChats().then((res: ChatItem[]) => {
+						this.setProps({...this.props, chatItems: res});
 					});
 				});
 			}
@@ -68,8 +67,12 @@ export class ChatPage extends Component<Props> {
 			// TODO: add form validator
 			if (addUserInput?.value) {
 				searchUser(addUserInput.value).then((res) => {
-					const userIds = JSON.parse(res).map((user: any) => user.id);
-					addUsers(userIds, this.props.currentChat.id);
+					const userIds = res.map((user: any) => user.id);
+					if (userIds.length) {
+						addUsers(userIds, this.props.currentChat.id);
+					} else {
+						alert('Users are not found(((');
+					}
 				});
 			}
 		});
@@ -82,8 +85,12 @@ export class ChatPage extends Component<Props> {
 			// TODO: add form validator
 			if (deleteUserInput?.value) {
 				searchUser(deleteUserInput.value).then((res) => {
-					const userIds = JSON.parse(res).map((user: any) => user.id);
-					deleteUsers(userIds, this.props.currentChat.id);
+					const userIds = res.map((user: any) => user.id);
+					if (userIds.length) {
+						deleteUsers(userIds, this.props.currentChat.id);
+					} else {
+						alert('Users are not found(((');
+					}
 				});
 			}
 		});
@@ -99,8 +106,8 @@ export class ChatPage extends Component<Props> {
 		);
 	}
 	componentDidMount() {
-		getChats().then((res: string) => {
-			this.setProps({...this.props, chatItems: JSON.parse(res)});
+		getChats().then((res: ChatItem[]) => {
+			this.setProps({...this.props, chatItems: res});
 		});
 	}
 

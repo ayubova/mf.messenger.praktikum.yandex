@@ -24,3 +24,10 @@
 	flex-direction: column;
 	justify-content: space-around;
 }
+
+.popup-close-button {
+	position: relative;
+	top: -32px;
+	left: 150px;
+	cursor: pointer;
+}

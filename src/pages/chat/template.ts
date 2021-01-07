@@ -63,6 +63,10 @@ export default `
 
 				<div id="popup-add-user" class="popup">
 					<div class="popup__content">
+					<div class="popup-close-button">
+						<img src="src/images/deleteIcon.svg" alt="delete">
+					</div>
+					<header class="popup__header">Добавить пользователя</header>
 						<form id="add-user-form" name="add-user" class="popup-form">
 						<div>
 							<div class="chat-input__label">Логин</div>
@@ -81,6 +85,10 @@ export default `
 
 				<div id="popup-delete-user" class="popup">
 					<div class="popup__content">
+					<div class="popup-close-button">
+						<img src="src/images/deleteIcon.svg" alt="delete">
+					</div>
+					<header class="popup__header">Удалить пользователя</header>
 						<form id="delete-user-form" name="delete-user" class="popup-form">
 						<div>
 							<div class="chat-input__label">Логин</div>
@@ -99,6 +107,9 @@ export default `
 
 				<div id="popup-add-chat" class="popup">
 					<div class="popup__content">
+					<div class="popup-close-button">
+						<img src="src/images/deleteIcon.svg" alt="delete">
+					</div>
 						<header class="popup__header">Добавить чат</header>
 						<form id="add-chat-form" name="add-chat" class="popup-form">
 							<div>
@@ -106,7 +117,7 @@ export default `
 								<p class="input-field__error input-field__error_hidden">Введите название</p>
 									<input
 										type="text"
-										name="titile"
+										name="title"
 										class="chat__input-item__input"
 										placeholder=" "
 									/>

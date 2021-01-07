@@ -67,8 +67,7 @@ export class ProfilePage extends Component<Props> {
 		this.element?.querySelector('.profile__avatar')?.addEventListener('click', () => {
 			getFileFromUser()
 				.then((files: FileList) => uploadAvatar(files[0]))
-				.then((response: string) => {
-					const user = JSON.parse(response);
+				.then((user: any) => {
 					this.setProps({...this.props, avatar: addBaseURL(user.avatar)});
 				});
 		});
@@ -80,8 +79,7 @@ export class ProfilePage extends Component<Props> {
 		}
 		if (this.props.state === 'changeProfile') {
 			updateUser(data)
-				.then((response: string) => {
-					const user = JSON.parse(response);
+				.then((user: any) => {
 					const inputs = this.props.inputs.map((input) => ({...input, value: user[input.name]}));
 					this.setProps({...this.props, inputs, avatar: addBaseURL(user.avatar)});
 				})
@@ -90,8 +88,7 @@ export class ProfilePage extends Component<Props> {
 	}
 
 	componentDidMount() {
-		getUser().then((response: string) => {
-			const user = JSON.parse(response);
+		getUser().then((user: any) => {
 			const inputs = this.props.inputs.map((input) => ({...input, value: user[input.name]}));
 			this.setProps({...this.props, inputs, avatar: addBaseURL(user.avatar)});
 		});
