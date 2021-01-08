@@ -23,7 +23,7 @@ export class Route {
 	}
 
 	match(pathname) {
-		return isEqual(pathname, this._pathname);
+		return pathname === this._pathname;
 	}
 
 	render() {

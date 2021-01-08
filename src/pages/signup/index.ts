@@ -2,7 +2,7 @@ import template from './template.js';
 import {Component} from '../../scripts/Component.js';
 import {Input} from '../../types';
 import Button from '../../components/button/index.js';
-import {addHandlerForm, logFormData, showInputError, hideInputError} from '../../scripts/utils.js';
+import {showInputError, hideInputError} from '../../scripts/utils.js';
 import {FormValidator} from '../../scripts/FormValidator.js';
 import {signupFormInputs} from './constants.js';
 import {signUp} from './api.js';
@@ -31,7 +31,6 @@ export class SignupPage extends Component<Props> {
 				signUp
 			);
 			signupFormValidator.on();
-			addHandlerForm(signupForm, logFormData);
 		}
 	}
 

@@ -2,7 +2,7 @@ import template from './template.js';
 import {Component} from '../../scripts/Component.js';
 import {Input} from '../../types';
 import Button from '../../components/button/index.js';
-import {addHandlerForm, logFormData, showInputError, hideInputError} from '../../scripts/utils.js';
+import {showInputError, hideInputError} from '../../scripts/utils.js';
 import {FormValidator} from '../../scripts/FormValidator.js';
 import {authFormInputs} from './constants.js';
 import {signIn} from './api.js';
@@ -20,7 +20,6 @@ export class AuthPage extends Component<Props> {
 
 		const authForm = this.element?.querySelector(`form`);
 		if (authForm) {
-			addHandlerForm(authForm, logFormData);
 			const authFormValidator = new FormValidator(
 				authForm,
 				authFormInputs,
