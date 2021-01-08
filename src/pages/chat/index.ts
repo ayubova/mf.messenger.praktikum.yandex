@@ -95,6 +95,12 @@ export class ChatPage extends Component<Props> {
 			}
 		});
 
+		this.element?.querySelectorAll('.popup')?.forEach((popup) => {
+			popup.querySelector('.popup-close-button')?.addEventListener('click', () => {
+				popup.classList.remove('popup_opened');
+			});
+		});
+
 		this.element?.querySelectorAll<HTMLElement>('.chat-item')?.forEach((el) =>
 			el.addEventListener('click', () => {
 				const currentChat = this.props.chatItems.find((chat) => `${chat.id}` === el.dataset.chatItemId)!;
