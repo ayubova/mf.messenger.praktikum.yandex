@@ -7,4 +7,4 @@ export const signUp = (data: any) =>
 	api
 		.post(SIGNUP_ENDPOINT, {data})
 		.then(() => router.go(Routes.chat))
-		.catch(alert);
+		.catch((err: any) => alert(JSON.stringify(err)));

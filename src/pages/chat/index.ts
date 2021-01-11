@@ -23,12 +23,13 @@ export class ChatPage extends Component<Props> {
 			Handlebars.registerPartial('delete-button', deleteButton.element.innerHTML);
 		}
 		super('div', props);
-		this.element
-			?.querySelector('.chat-header__profile')
-			?.addEventListener('click', () => router.go(Routes.profile));
 	}
 
 	setEventListeners() {
+		this.element
+			?.querySelector('.chat-header__profile')
+			?.addEventListener('click', () => router.go(Routes.profile));
+
 		this.element?.querySelector('.message-header__button')?.addEventListener('click', () => {
 			this.element?.querySelector('.menu')?.classList.toggle('menu_opened');
 		});
@@ -41,6 +42,7 @@ export class ChatPage extends Component<Props> {
 			this.element?.querySelector('#popup-delete-user')?.classList.add('popup_opened');
 		});
 		this.element?.querySelector('.chat-header__add')?.addEventListener('click', () => {
+			console.log('click add button');
 			this.element?.querySelector('#popup-add-chat')?.classList.add('popup_opened');
 		});
 

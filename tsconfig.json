@@ -17,5 +17,5 @@
 		"downlevelIteration": true,
 		"outDir": "dist"
 	},
-	"include": ["src", "node_modules/handlebars/types"]
+	"include": ["src", "node_modules/handlebars/types", "test"]
 }

@@ -104,6 +104,7 @@ export default `
 					</form>
 					</div>
 				</div>
+				{{/if}}
 
 				<div id="popup-add-chat" class="popup">
 					<div class="popup__content">
@@ -125,9 +126,7 @@ export default `
 							{{> add-button }}
 						</form>
 					</div>
-				</div>
-				{{/if}}
-			
+				</div>			
 		</main>
     `;
 
