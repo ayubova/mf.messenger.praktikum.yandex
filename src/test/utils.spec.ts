@@ -1,13 +1,7 @@
 // @ts-nocheck
 import {getFormData} from '../scripts/utils';
 
-import {assert, expect, should as shouldChai} from 'chai';
-import {JSDOM} from 'jsdom';
-const should = shouldChai();
-
-const {window} = new JSDOM(``);
-const {document, FormData} = window;
-global.FormData = FormData;
+import {assert} from 'chai';
 
 describe('utils', function () {
 	it('getFormData function', () => {

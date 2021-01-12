@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {isEqual, render} from './utils.js';
+import {render} from './utils.js';
 
 export class Route {
 	constructor(pathname, view, props) {

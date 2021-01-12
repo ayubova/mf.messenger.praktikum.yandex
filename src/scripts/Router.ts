@@ -27,7 +27,6 @@ export class Router {
 		window.onpopstate = ((event) => {
 			this._onRoute(event.currentTarget.location.pathname);
 		}).bind(this);
-
 		this._onRoute(window.location.pathname);
 	}
 
