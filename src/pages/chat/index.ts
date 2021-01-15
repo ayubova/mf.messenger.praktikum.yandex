@@ -4,6 +4,7 @@ import Button from '../../components/button/index.js';
 import {ChatMessage, ChatItem} from '../../types';
 import {router, Routes} from '../../index.js';
 import {getChats, createChat, searchUser, addUsers, deleteUsers} from './api.js';
+
 interface Props {
 	chatItems: ChatItem[];
 	chatMessages: ChatMessage[];
@@ -12,6 +13,8 @@ interface Props {
 	currentChat: ChatItem;
 }
 export class ChatPage extends Component<Props> {
+	private menuElement: null | HTMLElement = null;
+	// @ts-ignore
 	constructor(props: Props) {
 		Handlebars.registerHelper('isOwner', (value) => value === 'sent');
 		const addButton = new Button({child: 'Добавить', type: 'submit'});
@@ -26,23 +29,23 @@ export class ChatPage extends Component<Props> {
 	}
 
 	setEventListeners() {
+		this.menuElement = this.element?.querySelector<HTMLElement>('.menu')!;
 		this.element
 			?.querySelector('.chat-header__profile')
 			?.addEventListener('click', () => router.go(Routes.profile));
 
 		this.element?.querySelector('.message-header__button')?.addEventListener('click', () => {
-			this.element?.querySelector('.menu')?.classList.toggle('menu_opened');
+			this.menuElement?.classList.toggle('menu_opened');
 		});
 		this.element?.querySelector('#add-user-menu-item')?.addEventListener('click', () => {
-			this.element?.querySelector('.menu')?.classList.remove('menu_opened');
+			this.menuElement?.classList.remove('menu_opened');
 			this.element?.querySelector('#popup-add-user')?.classList.add('popup_opened');
 		});
 		this.element?.querySelector('#remove-user-menu-item')?.addEventListener('click', () => {
-			this.element?.querySelector('.menu')?.classList.remove('menu_opened');
+			this.menuElement?.classList.remove('menu_opened');
 			this.element?.querySelector('#popup-delete-user')?.classList.add('popup_opened');
 		});
 		this.element?.querySelector('.chat-header__add')?.addEventListener('click', () => {
-			console.log('click add button');
 			this.element?.querySelector('#popup-add-chat')?.classList.add('popup_opened');
 		});
 

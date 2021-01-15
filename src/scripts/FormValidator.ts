@@ -1,5 +1,6 @@
 import {Input} from '../types';
 import {getFormData} from './utils.js';
+
 export class FormValidator<T = Record<string, string | number>> {
 	private inputs: Input[];
 	private formElement: HTMLFormElement;

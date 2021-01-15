@@ -24,27 +24,27 @@
 	"homepage": "https://github.com/ayubova/mf.messenger.praktikum.yandex#readme",
 	"devDependencies": {
 		"@types/mocha": "latest",
-		"autoprefixer": "^10.1.0",
-		"babel-plugin-transform-class-properties": "^6.24.1",
-		"express": "^4.17.1",
+		"autoprefixer": "10.1.0",
+		"babel-plugin-transform-class-properties": "6.24.1",
+		"express": "4.17.1",
 		"global-jsdom": "7.0.0",
 		"jsdom": "16.4.0",
 		"jsdom-global": "3.0.2",
-		"postcss": "^8.2.2",
-		"postcss-cli": "^8.3.1"
+		"postcss": "8.2.2",
+		"postcss-cli": "8.3.1"
 	},
 	"dependencies": {
-		"@babel/cli": "^7.12.1",
-		"@babel/core": "^7.12.3",
-		"@babel/preset-env": "^7.12.1",
-		"@babel/preset-typescript": "^7.12.1",
-		"@babel/register": "^7.12.1",
-		"@types/chai": "^4.2.14",
-		"@types/mocha": "^5.2.7",
-		"chai": "^4.2.0",
+		"@babel/cli": "7.12.1",
+		"@babel/core": "7.12.3",
+		"@babel/preset-env": "7.12.1",
+		"@babel/preset-typescript": "7.12.1",
+		"@babel/register": "7.12.1",
+		"@types/chai": "4.2.14",
+		"@types/mocha": "5.2.7",
+		"chai": "4.2.0",
 		"handlebars": "4.7.6",
 		"mocha": "latest",
-		"rimraf": "^3.0.2",
+		"rimraf": "3.0.2",
 		"typescript": "4.1.2"
 	}
 }
