@@ -86,10 +86,6 @@ export class Component<Props> {
 
 	_render() {
 		const block = this.render();
-		// Этот небезопасный метод для упрощения логики
-		// Используйте шаблонизатор из npm или напиши свой безопасный
-		// Нужно не в строку компилировать (или делать это правильно),
-		// либо сразу в DOM-элементы превращать из возвращать из compile DOM-ноду
 		if (this._element) {
 			this._element.innerHTML = Handlebars.compile(block)(this.props);
 			this.setEventListeners();
@@ -105,31 +101,23 @@ export class Component<Props> {
 	}
 
 	_makePropsProxy(props: Props) {
-		// Можно и так передать this
-		// Такой способ больше не применяется с приходом ES6+
-		const self = this;
-
 		return new Proxy(props as any, {
-			get(target, prop) {
+			get: (target, prop) => {
 				const value = target[prop];
 				return typeof value === 'function' ? value.bind(target) : value;
 			},
-			set(target, prop, value) {
+			set: (target, prop, value) => {
 				target[prop] = value;
-
-				// Запускаем обновление компоненты
-				// Плохой cloneDeep, в след итерации нужно заставлять добавлять cloneDeep им самим
-				self.eventBus.emit(Component.EVENTS.FLOW_CDU, {...target}, target);
+				this.eventBus.emit(Component.EVENTS.FLOW_CDU, {...target}, target);
 				return true;
 			},
-			deleteProperty() {
+			deleteProperty: () => {
 				throw new Error('Нет доступа');
 			},
 		});
 	}
 
 	_createDocumentElement(tagName: string) {
-		// Можно сделать метод, который через фрагменты в цикле создает сразу несколько блоков
 		return document.createElement(tagName);
 	}
 

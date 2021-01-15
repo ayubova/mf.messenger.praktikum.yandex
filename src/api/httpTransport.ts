@@ -35,8 +35,12 @@ export class HTTPTransport {
 		url = `${this._base}/${url}`;
 
 		return new Promise(function (resolve, reject) {
+			const _reject = (response: any) => {
+				alert(JSON.stringify(response));
+				return reject(response);
+			};
 			if (!method) {
-				reject('No method');
+				_reject('No method');
 				return;
 			}
 
@@ -59,17 +63,17 @@ export class HTTPTransport {
 					resolve(response);
 				} else if (xhr.status == 401) {
 					router.go(Routes.auth);
-					reject(response);
+					_reject(response);
 				} else {
-					reject(response);
+					_reject(response);
 				}
 			};
 
-			xhr.onabort = reject;
-			xhr.onerror = reject;
+			xhr.onabort = _reject;
+			xhr.onerror = _reject;
 
 			xhr.timeout = timeout;
-			xhr.ontimeout = reject;
+			xhr.ontimeout = _reject;
 
 			if (isGet || !data) {
 				xhr.send();
