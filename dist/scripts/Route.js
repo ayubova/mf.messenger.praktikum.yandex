@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { render } from './utils';
+import { render } from './utils.js';
 var Route = /** @class */ (function () {
     function Route(pathname, view, props) {
         this._pathname = pathname;

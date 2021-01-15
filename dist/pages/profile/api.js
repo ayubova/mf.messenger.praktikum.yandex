@@ -1,5 +1,5 @@
-import { api } from '../../api/httpTransport';
-import { router, Routes } from '../../index';
+import { api } from '../../api/httpTransport.js';
+import { router, Routes } from '../../index.js';
 var USER_ENDPOINT = 'auth/user';
 var LOGOUT_ENDPOINT = 'auth/logout';
 var UPDATE_USER_ENDPOINT = 'user/profile';

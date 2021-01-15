@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { router } from '../index';
-import { AuthPage } from '../pages/auth/index';
+import { router } from '../index.js';
+import { AuthPage } from '../pages/auth/index.js';
 import { expect } from 'chai';
 describe('Router', function () {
     it('router rootQuery', function () {

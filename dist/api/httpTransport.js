@@ -10,9 +10,9 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 // @ts-nocheck
-import { queryStringify } from './utils';
-import { API_URL } from './constants';
-import { router, Routes } from '../index';
+import { queryStringify } from './utils.js';
+import { API_URL } from './constants.js';
+import { router, Routes } from '../index.js';
 var METHODS = {
     GET: 'GET',
     POST: 'POST',

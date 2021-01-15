@@ -1,63 +1,43 @@
-var _a;
-import { SignupPage } from './component.js';
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+import template from './template.js';
+import { Component } from '../../scripts/Component.js';
 import Button from '../../components/button/index.js';
-import { render, addHandlerForm, logFormData, showInputError, hideInputError } from '../../scripts/utils.js';
+import { showInputError, hideInputError } from '../../scripts/utils.js';
 import { FormValidator } from '../../scripts/FormValidator.js';
-var signupFormInputs = [
-    {
-        name: 'email',
-        label: 'Почта',
-        errorMessage: 'Неверная почта',
-        validationRule: function (i) { return !!i && /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i.test(i); },
-    },
-    {
-        name: 'login',
-        label: 'Логин',
-        errorMessage: 'Неверный логин',
-        validationRule: function (i) { return !!i && i.length > 2; },
-    },
-    {
-        name: 'first_name',
-        label: 'Имя',
-        errorMessage: 'Обязательное поле',
-        validationRule: function (i) { return !!i && i.length > 2; },
-    },
-    {
-        name: 'second_name',
-        label: 'Фамилия',
-        errorMessage: 'Обязательное поле',
-        validationRule: function (i) { return !!i && i.length > 2; },
-    },
-    {
-        name: 'phone',
-        label: 'Телефон',
-        errorMessage: 'Неверный телефон',
-        validationRule: function (i) { return !!i && i.length > 2; },
-    },
-    {
-        name: 'password',
-        label: 'Пароль',
-        errorMessage: 'Неверный пароль',
-        validationRule: function (i) { return !!i && i.length > 2; },
-    },
-    {
-        name: 'confirm_password',
-        label: 'Пароль (еще раз)',
-        errorMessage: 'Неверный пароль',
-        validationRule: function (i) { return !!i && i.length > 2; },
-    },
-];
-var signupButton = new Button({ child: 'Зарегистрироваться', type: 'submit' });
-if (signupButton.element) {
-    Handlebars.registerPartial('signup-button', signupButton.element.innerHTML);
-}
-var signupPageComponent = new SignupPage({
-    inputs: signupFormInputs,
-});
-render('#root', signupPageComponent);
-var signupForm = (_a = signupPageComponent.element) === null || _a === void 0 ? void 0 : _a.querySelector("form");
-if (signupForm) {
-    var signupFormValidator = new FormValidator(signupForm, signupFormInputs, showInputError, hideInputError, '.input-field__error');
-    signupFormValidator.on();
-    addHandlerForm(signupForm, logFormData);
-}
+import { signupFormInputs } from './constants.js';
+import { signUp } from './api.js';
+var SignupPage = /** @class */ (function (_super) {
+    __extends(SignupPage, _super);
+    function SignupPage(props) {
+        var _a;
+        var _this = this;
+        var signupButton = new Button({ child: 'Зарегистрироваться', type: 'submit' });
+        if (signupButton.element) {
+            Handlebars.registerPartial('signup-button', signupButton.element.innerHTML);
+        }
+        _this = _super.call(this, 'div', props) || this;
+        var signupForm = (_a = _this.element) === null || _a === void 0 ? void 0 : _a.querySelector("form");
+        if (signupForm) {
+            var signupFormValidator = new FormValidator(signupForm, signupFormInputs, showInputError, hideInputError, '.input-field__error', signUp);
+            signupFormValidator.on();
+        }
+        return _this;
+    }
+    SignupPage.prototype.render = function () {
+        return template;
+    };
+    return SignupPage;
+}(Component));
+export { SignupPage };

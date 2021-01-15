@@ -73,22 +73,18 @@ var Component = /** @class */ (function () {
     });
     Component.prototype._render = function () {
         var block = this.render();
-        // Этот небезопасный метод для упрощения логики
-        // Используйте шаблонизатор из npm или напиши свой безопасный
-        // Нужно не в строку компилировать (или делать это правильно),
-        // либо сразу в DOM-элементы превращать из возвращать из compile DOM-ноду
         if (this._element) {
             this._element.innerHTML = Handlebars.compile(block)(this.props);
+            this.setEventListeners();
         }
     };
+    Component.prototype.setEventListeners = function () { };
     Component.prototype.render = function () { };
     Component.prototype.getContent = function () {
         return this.element;
     };
     Component.prototype._makePropsProxy = function (props) {
-        // Можно и так передать this
-        // Такой способ больше не применяется с приходом ES6+
-        var self = this;
+        var _this = this;
         return new Proxy(props, {
             get: function (target, prop) {
                 var value = target[prop];
@@ -96,9 +92,7 @@ var Component = /** @class */ (function () {
             },
             set: function (target, prop, value) {
                 target[prop] = value;
-                // Запускаем обновление компоненты
-                // Плохой cloneDeep, в след итерации нужно заставлять добавлять cloneDeep им самим
-                self.eventBus.emit(Component.EVENTS.FLOW_CDU, __assign({}, target), target);
+                _this.eventBus.emit(Component.EVENTS.FLOW_CDU, __assign({}, target), target);
                 return true;
             },
             deleteProperty: function () {
@@ -107,7 +101,6 @@ var Component = /** @class */ (function () {
         });
     };
     Component.prototype._createDocumentElement = function (tagName) {
-        // Можно сделать метод, который через фрагменты в цикле создает сразу несколько блоков
         return document.createElement(tagName);
     };
     Component.prototype.show = function () {

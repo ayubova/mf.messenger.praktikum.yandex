@@ -1,4 +1,4 @@
-import { api } from '../../api/httpTransport';
+import { api } from '../../api/httpTransport.js';
 var CHATS_ENDPOINT = 'chats';
 var USER_SEARCH_ENDPOINT = 'user/search';
 var CHATS_USERS_ENDPOINT = 'chats/users';

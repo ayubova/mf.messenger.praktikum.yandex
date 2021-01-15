@@ -10,7 +10,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 // @ts-nocheck
-import { Route } from './Route';
+import { Route } from './Route.js';
 var Router = /** @class */ (function () {
     function Router(rootQuery) {
         if (Router.__instance) {
