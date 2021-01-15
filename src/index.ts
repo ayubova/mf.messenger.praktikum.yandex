@@ -14,12 +14,12 @@ import {props as chatProps} from './pages/chat/constants.js';
 export const router = new Router('#app');
 
 export enum Routes {
+	chat = '/',
 	auth = '/auth',
 	signup = '/signup',
 	error404 = '/error-404',
 	error500 = '/error-500',
 	profile = '/profile',
-	chat = '/chat',
 }
 
 export const PAGES = {

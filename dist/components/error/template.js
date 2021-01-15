@@ -1,1 +1,0 @@
-export default "\n<main class=\"error\">\n    <h3 class=\"error__title\">{{errorCode}}</h3>\n    <div class=\"error__message\">{{errorMessage}}</div>\n    <a href=\"\" class=\"error__back-link\">{{linkButtonText}}</a>\n</main>\n";
