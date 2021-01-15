@@ -4,14 +4,14 @@ export interface Input {
 	errorMessage: string;
 	validationRule: (i: string) => boolean;
 	type?: string;
+	disabled?: boolean;
 }
 
 export interface ChatItem {
-	userName: string;
+	id: number;
 	avatar?: string;
-	content: string;
-	dateTime: string;
-	unreadCounter: number;
+	title: string;
+	created_by: string;
 }
 
 export interface ChatMessage {
