@@ -1,9 +1,9 @@
-import template from './template.js';
-import {Component} from '../../scripts/Component.js';
-import Button from '../../components/button/index.js';
+import template from './template';
+import {Component} from '../../scripts/Component';
+import Button from '../../components/button/index';
 import {ChatMessage, ChatItem} from '../../types';
-import {router, Routes} from '../../index.js';
-import {getChats, createChat, searchUser, addUsers, deleteUsers} from './api.js';
+import {router, Routes} from '../../index';
+import {getChats, createChat, searchUser, addUsers, deleteUsers} from './api';
 
 interface Props {
 	chatItems: ChatItem[];

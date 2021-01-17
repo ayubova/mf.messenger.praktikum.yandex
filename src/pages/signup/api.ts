@@ -1,5 +1,5 @@
-import {api} from '../../api/httpTransport.js';
-import {router, Routes} from '../../index.js';
+import {api} from '../../api/httpTransport';
+import {router, Routes} from '../../index';
 
 const SIGNUP_ENDPOINT = 'auth/signup';
 

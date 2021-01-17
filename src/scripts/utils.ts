@@ -1,5 +1,5 @@
-import {Component} from './Component.js';
-import {API_BASE} from '../api/constants.js';
+import {Component} from './Component';
+import {API_BASE} from '../api/constants';
 
 export function render(query: string, block: Component<any>) {
 	const root = document.querySelector(query);

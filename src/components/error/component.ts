@@ -1,5 +1,5 @@
-import {Component} from '../../scripts/Component.js';
-import template from './template.js';
+import {Component} from '../../scripts/Component';
+import template from './template';
 
 interface Props {
 	errorCode: string;

@@ -1,3 +1,3 @@
-import {ErrorBlock} from './component.js';
+import {ErrorBlock} from './component';
 
 export default ErrorBlock;

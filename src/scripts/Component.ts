@@ -1,4 +1,4 @@
-import {EventBus} from './EventBus.js';
+import {EventBus} from './EventBus';
 
 export class Component<Props> {
 	private _meta: {

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {render} from './utils.js';
+import {render} from './utils';
 
 export class Route {
 	constructor(pathname, view, props) {

@@ -1,5 +1,5 @@
-import template from './template.js';
-import {Component} from '../../scripts/Component.js';
+import template from './template';
+import {Component} from '../../scripts/Component';
 
 interface Props {
 	child: string;

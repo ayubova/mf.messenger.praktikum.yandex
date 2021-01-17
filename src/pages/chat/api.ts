@@ -1,4 +1,4 @@
-import {api} from '../../api/httpTransport.js';
+import {api} from '../../api/httpTransport';
 
 const CHATS_ENDPOINT = 'chats';
 const USER_SEARCH_ENDPOINT = 'user/search';

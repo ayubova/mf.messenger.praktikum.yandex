@@ -5,7 +5,7 @@
 	"main": "server.js",
 	"scripts": {
 		"clean": "rimraf dist",
-		"build": "npm run clean && npm run prefix:css && tsc",
+		"build": "webpack",
 		"watch": "tsc --watch",
 		"start": "node server.js",
 		"prefix:css": "postcss --use autoprefixer -r src/index.css",
@@ -28,10 +28,15 @@
 		"babel-plugin-transform-class-properties": "6.24.1",
 		"express": "4.17.1",
 		"global-jsdom": "7.0.0",
+		"html-webpack-plugin": "^4.5.1",
 		"jsdom": "16.4.0",
 		"jsdom-global": "3.0.2",
-		"postcss": "8.2.2",
-		"postcss-cli": "8.3.1"
+		"postcss": "^8.2.2",
+		"postcss-cli": "8.3.1",
+		"postcss-loader": "^4.1.0",
+		"ts-loader": "^8.0.14",
+		"webpack": "^5.15.0",
+		"webpack-cli": "^4.3.1"
 	},
 	"dependencies": {
 		"@babel/cli": "7.12.1",

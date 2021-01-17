@@ -1,11 +1,11 @@
-import template from './template.js';
-import {Component} from '../../scripts/Component.js';
+import template from './template';
+import {Component} from '../../scripts/Component';
 import {Input} from '../../types';
-import Button from '../../components/button/index.js';
-import {showInputError, hideInputError} from '../../scripts/utils.js';
-import {FormValidator} from '../../scripts/FormValidator.js';
-import {authFormInputs} from './constants.js';
-import {signIn} from './api.js';
+import Button from '../../components/button/index';
+import {showInputError, hideInputError} from '../../scripts/utils';
+import {FormValidator} from '../../scripts/FormValidator';
+import {authFormInputs} from './constants';
+import {signIn} from './api';
 interface Props {
 	inputs: Input[];
 }

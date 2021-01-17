@@ -1,7 +1,7 @@
 // @ts-nocheck
-import {queryStringify} from './utils.js';
-import {API_URL} from './constants.js';
-import {router, Routes} from '../index.js';
+import {queryStringify} from './utils';
+import {API_URL} from './constants';
+import {router, Routes} from '../index';
 
 const METHODS = {
 	GET: 'GET',

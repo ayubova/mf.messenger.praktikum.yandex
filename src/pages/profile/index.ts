@@ -1,13 +1,13 @@
-import template from './template.js';
-import {Component} from '../../scripts/Component.js';
-import {showInputError, hideInputError} from '../../scripts/utils.js';
-import {FormValidator} from '../../scripts/FormValidator.js';
-import Button from '../../components/button/index.js';
-import {router} from '../../index.js';
-import {getFileFromUser, addBaseURL} from '../../scripts/utils.js';
+import template from './template';
+import {Component} from '../../scripts/Component';
+import {showInputError, hideInputError} from '../../scripts/utils';
+import {FormValidator} from '../../scripts/FormValidator';
+import Button from '../../components/button/index';
+import {router} from '../../index';
+import {getFileFromUser, addBaseURL} from '../../scripts/utils';
 
-import {profileFormInputs, passwordInputs, States, AnyState, User, ChangePasswordPayload, Input} from './constants.js';
-import {getUser, logout, updateUser, uploadAvatar, changePassword} from './api.js';
+import {profileFormInputs, passwordInputs, States, AnyState, User, ChangePasswordPayload, Input} from './constants';
+import {getUser, logout, updateUser, uploadAvatar, changePassword} from './api';
 
 export interface Props {
 	inputs: Input[];

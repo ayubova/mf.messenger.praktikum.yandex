@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {Route} from './Route.js';
+import {Route} from './Route';
 
 export class Router {
 	constructor(rootQuery) {

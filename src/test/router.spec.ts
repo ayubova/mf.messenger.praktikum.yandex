@@ -1,6 +1,6 @@
 // @ts-nocheck
-import {router} from '../index.js';
-import {AuthPage} from '../pages/auth/index.js';
+import {router} from '../index';
+import {AuthPage} from '../pages/auth/index';
 
 import {expect} from 'chai';
 

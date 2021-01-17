@@ -1,5 +1,5 @@
 import {Input} from '../types';
-import {getFormData} from './utils.js';
+import {getFormData} from './utils';
 
 export class FormValidator<T = Record<string, string | number>> {
 	private inputs: Input[];

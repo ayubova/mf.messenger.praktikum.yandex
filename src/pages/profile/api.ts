@@ -1,6 +1,6 @@
-import {api} from '../../api/httpTransport.js';
-import {router, Routes} from '../../index.js';
-import {User, ChangePasswordPayload} from './constants.js';
+import {api} from '../../api/httpTransport';
+import {router, Routes} from '../../index';
+import {User, ChangePasswordPayload} from './constants';
 
 const USER_ENDPOINT = 'auth/user';
 const LOGOUT_ENDPOINT = 'auth/logout';
