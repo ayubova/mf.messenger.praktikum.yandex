@@ -1,4 +1,4 @@
-https://focused-torvalds-f8bdce.netlify.app/
+https://ayubova-app.herokuapp.com/
 
 Для запуска проекта:
 
