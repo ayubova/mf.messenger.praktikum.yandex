@@ -1,59 +1,72 @@
 {
-	"name": "mf.messenger.praktikum.yandex",
-	"version": "1.0.0",
-	"description": "",
-	"main": "server.js",
-	"scripts": {
-		"clean": "rimraf dist",
-		"build": "webpack",
-		"watch": "tsc --watch",
-		"start": "node server.js",
-		"prefix:css": "postcss --use autoprefixer -r src/index.css",
-		"compile": "babel src -d dist --extensions '.ts'",
-		"test": "mocha"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ayubova/mf.messenger.praktikum.yandex.git"
-	},
-	"author": "Julia Ayubova",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/ayubova/mf.messenger.praktikum.yandex/issues"
-	},
-	"homepage": "https://github.com/ayubova/mf.messenger.praktikum.yandex#readme",
-	"devDependencies": {
-		"@types/mocha": "latest",
-		"@typescript-eslint/eslint-plugin": "4.14.0",
-		"@typescript-eslint/parser": "4.14.0",
-		"autoprefixer": "10.1.0",
-		"babel-plugin-transform-class-properties": "6.24.1",
-		"eslint": "7.18.0",
-		"eslint-config-xo": "0.34.0",
-		"express": "4.17.1",
-		"global-jsdom": "7.0.0",
-		"html-webpack-plugin": "4.5.1",
-		"jsdom": "16.4.0",
-		"jsdom-global": "3.0.2",
-		"postcss": "8.2.2",
-		"postcss-cli": "8.3.1",
-		"postcss-loader": "4.1.0",
-		"ts-loader": "8.0.14",
-		"webpack": "5.15.0",
-		"webpack-cli": "4.3.1"
-	},
-	"dependencies": {
-		"@babel/cli": "7.12.1",
-		"@babel/core": "7.12.3",
-		"@babel/preset-env": "7.12.1",
-		"@babel/preset-typescript": "7.12.1",
-		"@babel/register": "7.12.1",
-		"@types/chai": "4.2.14",
-		"@types/mocha": "5.2.7",
-		"chai": "4.2.0",
-		"handlebars": "4.7.6",
-		"mocha": "latest",
-		"rimraf": "3.0.2",
-		"typescript": "4.1.2"
-	}
+  "name": "mf.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "clean": "rimraf node_modules/",
+    "build": "webpack",
+    "watch": "tsc --watch",
+    "start": "node server.js",
+    "prefix:css": "postcss --use autoprefixer -r src/index.css",
+    "compile": "babel src -d dist --extensions '.ts'",
+    "lint:css": "stylelint **/*.css",
+    "lint:js": "eslint .",
+    "check:lint": "npm-run-all --parallel lint:css lint:js",
+    "check:test": "mocha",
+    "check": "npm-run-all check:lint check:test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run check:lint"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayubova/mf.messenger.praktikum.yandex.git"
+  },
+  "author": "Julia Ayubova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ayubova/mf.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/ayubova/mf.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@types/mocha": "latest",
+    "@typescript-eslint/eslint-plugin": "4.14.0",
+    "@typescript-eslint/parser": "4.14.0",
+    "autoprefixer": "10.1.0",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "eslint": "7.18.0",
+    "eslint-config-xo": "0.34.0",
+    "express": "4.17.1",
+    "global-jsdom": "7.0.0",
+    "html-webpack-plugin": "4.5.1",
+    "husky": "4.3.8",
+    "jsdom": "16.4.0",
+    "jsdom-global": "3.0.2",
+    "npm-run-all": "4.1.5",
+    "postcss": "8.2.2",
+    "postcss-cli": "8.3.1",
+    "postcss-loader": "4.1.0",
+    "rimraf": "3.0.2",
+    "stylelint": "13.9.0",
+    "stylelint-config-standard": "20.0.0",
+    "ts-loader": "8.0.14",
+    "webpack": "5.15.0",
+    "webpack-cli": "4.3.1"
+  },
+  "dependencies": {
+    "@babel/cli": "7.12.1",
+    "@babel/core": "7.12.3",
+    "@babel/preset-env": "7.12.1",
+    "@babel/preset-typescript": "7.12.1",
+    "@babel/register": "7.12.1",
+    "@types/chai": "4.2.14",
+    "@types/mocha": "5.2.7",
+    "chai": "4.2.0",
+    "handlebars": "4.7.6",
+    "mocha": "latest",
+    "typescript": "4.1.2"
+  }
 }
