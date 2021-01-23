@@ -43,6 +43,6 @@ export function queryStringify(data: PlainObject) {
 	}
 
 	return getParams(data)
-		.map((arr) => arr.join('='))
+		.map(arr => arr.join('='))
 		.join('&');
 }

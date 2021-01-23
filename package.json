@@ -11,7 +11,7 @@
     "prefix:css": "postcss --use autoprefixer -r src/index.css",
     "compile": "babel src -d dist --extensions '.ts'",
     "lint:css": "stylelint **/*.css",
-    "lint:js": "eslint .",
+    "lint:js": "eslint --ext .js,.ts ./src",
     "check:lint": "npm-run-all --parallel lint:css lint:js",
     "check:test": "mocha",
     "check": "npm-run-all check:lint check:test"

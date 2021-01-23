@@ -17,7 +17,7 @@ export class EventBus {
 			throw new Error(`Нет события: ${event}`);
 		}
 
-		this._listeners[event] = this._listeners[event].filter((listener) => listener !== callback);
+		this._listeners[event] = this._listeners[event].filter(listener => listener !== callback);
 	}
 
 	emit(event: string, ...args: ((...args: any[]) => void)[]) {

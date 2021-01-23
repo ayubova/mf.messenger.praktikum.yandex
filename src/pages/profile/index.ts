@@ -26,13 +26,14 @@ export class ProfilePage extends Component<Props> {
 		if (saveButton.element) {
 			Handlebars.registerPartial('save-button', saveButton.element.innerHTML);
 		}
+
 		super('div', props);
 		this.handleSubmit = this._handleSubmit.bind(this);
 		this.setState = this._setState.bind(this);
 	}
 
 	setEventListeners() {
-		const profileForm = this.element?.querySelector<HTMLFormElement>(`#profile-form`);
+		const profileForm = this.element?.querySelector<HTMLFormElement>('#profile-form');
 		if (profileForm) {
 			const profileFormValidator = new FormValidator<User>(
 				profileForm,
@@ -45,7 +46,7 @@ export class ProfilePage extends Component<Props> {
 			profileFormValidator.on();
 		}
 
-		const passwordForm = this.element?.querySelector<HTMLFormElement>(`#password-form`);
+		const passwordForm = this.element?.querySelector<HTMLFormElement>('#password-form');
 		if (passwordForm) {
 			const passwordFormValidator = new FormValidator<ChangePasswordPayload>(
 				passwordForm,
@@ -57,6 +58,7 @@ export class ProfilePage extends Component<Props> {
 			);
 			passwordFormValidator.on();
 		}
+
 		this.element?.querySelector('#logout-button')?.addEventListener('click', logout);
 		this.element?.querySelector('.left-menu__back-button')?.addEventListener('click', () => router.back());
 		this.element
@@ -76,12 +78,13 @@ export class ProfilePage extends Component<Props> {
 		if (this.props.state === States.changePassword) {
 			changePassword(data as ChangePasswordPayload).then(() => this.setState(States.view));
 		}
+
 		if (this.props.state === States.changeProfile) {
 			updateUser(data as User)
 				.then((user: User) => {
-					const inputs = this.props.inputs.map((input) => ({
+					const inputs = this.props.inputs.map(input => ({
 						...input,
-						value: user[input.name as keyof User],
+						value: user[input.name as keyof User]
 					}));
 					this.setProps({...this.props, inputs, avatar: user.avatar && addBaseURL(user.avatar)});
 				})
@@ -95,7 +98,7 @@ export class ProfilePage extends Component<Props> {
 
 	componentDidMount() {
 		getUser().then((user: User) => {
-			const inputs = this.props.inputs.map((input) => ({...input, value: user[input.name as keyof User]}));
+			const inputs = this.props.inputs.map(input => ({...input, value: user[input.name as keyof User]}));
 			this.setProps({...this.props, inputs, avatar: user.avatar && addBaseURL(user.avatar)});
 		});
 	}

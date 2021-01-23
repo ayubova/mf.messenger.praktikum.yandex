@@ -5,6 +5,7 @@ export class Component<Props> {
 		tagName: string;
 		props: Props;
 	};
+
 	private _element: null | HTMLElement = null;
 	public eventBus: EventBus;
 	public props: Props;
@@ -13,7 +14,7 @@ export class Component<Props> {
 		INIT: 'init',
 		FLOW_CDM: 'flow:component-did-mount',
 		FLOW_CDU: 'flow:component-did-update',
-		FLOW_RENDER: 'flow:render',
+		FLOW_RENDER: 'flow:render'
 	};
 
 	/** JSDoc
@@ -26,7 +27,7 @@ export class Component<Props> {
 		const eventBus = new EventBus();
 		this._meta = {
 			tagName,
-			props,
+			props
 		};
 
 		this.props = this._makePropsProxy(props);
@@ -65,6 +66,7 @@ export class Component<Props> {
 		if (!response) {
 			return;
 		}
+
 		this._render();
 	}
 
@@ -113,7 +115,7 @@ export class Component<Props> {
 			},
 			deleteProperty: () => {
 				throw new Error('Нет доступа');
-			},
+			}
 		});
 	}
 

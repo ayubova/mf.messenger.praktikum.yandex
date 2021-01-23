@@ -16,9 +16,10 @@ export class AuthPage extends Component<Props> {
 		if (authButton.element) {
 			Handlebars.registerPartial('auth-button', authButton.element.innerHTML);
 		}
+
 		super('div', props);
 
-		const authForm = this.element?.querySelector(`form`);
+		const authForm = this.element?.querySelector('form');
 		if (authForm) {
 			const authFormValidator = new FormValidator(
 				authForm,
@@ -31,6 +32,7 @@ export class AuthPage extends Component<Props> {
 			authFormValidator.on();
 		}
 	}
+
 	render() {
 		return template;
 	}

@@ -7,13 +7,14 @@ const METHODS = {
 	GET: 'GET',
 	POST: 'POST',
 	PUT: 'PUT',
-	DELETE: 'DELETE',
+	DELETE: 'DELETE'
 };
 
 export class HTTPTransport {
 	constructor(base) {
 		this._base = base;
 	}
+
 	get = (url, options = {}): any => {
 		return this.request(url, {...options, method: METHODS.GET}, options.timeout);
 	};
@@ -39,6 +40,7 @@ export class HTTPTransport {
 				alert(JSON.stringify(response));
 				return reject(response);
 			};
+
 			if (!method) {
 				_reject('No method');
 				return;
@@ -48,9 +50,9 @@ export class HTTPTransport {
 			xhr.withCredentials = true;
 			const isGet = method === METHODS.GET;
 
-			xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url);
+			xhr.open(method, isGet && Boolean(data) ? `${url}${queryStringify(data)}` : url);
 
-			Object.keys(headers).forEach((key) => {
+			Object.keys(headers).forEach(key => {
 				xhr.setRequestHeader(key, headers[key]);
 			});
 
@@ -59,6 +61,7 @@ export class HTTPTransport {
 				try {
 					response = JSON.parse(response);
 				} catch {}
+
 				if (xhr.status === 200) {
 					resolve(response);
 				} else if (xhr.status == 401) {

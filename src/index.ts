@@ -28,7 +28,11 @@ export const PAGES = {
 	[Routes.error404]: {component: ErrorBlock, initialProps: error404Props},
 	[Routes.error500]: {component: ErrorBlock, initialProps: error500Props},
 	[Routes.profile]: {component: ProfilePage, initialProps: profileProps},
-	[Routes.chat]: {component: ChatPage, initialProps: chatProps},
+	[Routes.chat]: {component: ChatPage, initialProps: chatProps}
 };
 
 Object.entries(PAGES).forEach(([path, {component, initialProps}]) => router.use(path, component, initialProps).start());
+
+if (!router.getRoute(window.location.pathname)) {
+	router.go('/error-404');
+}

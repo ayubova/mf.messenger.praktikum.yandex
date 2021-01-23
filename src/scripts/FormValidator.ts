@@ -49,6 +49,7 @@ export class FormValidator<T = Record<string, string | number>> {
 		if (submitButton) {
 			submitButton.disabled = !isFormValid;
 		}
+
 		if (isFormValid && e.type === 'submit') {
 			const formData = getFormData(this.formElement);
 			this.onSubmit(formData);
@@ -66,6 +67,7 @@ export class FormValidator<T = Record<string, string | number>> {
 					this.hideInputError(errorField);
 				}
 			}
+
 			return isValid;
 		}
 	}

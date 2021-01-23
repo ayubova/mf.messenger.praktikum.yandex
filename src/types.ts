@@ -11,7 +11,7 @@ export interface ChatItem {
 	id: number;
 	avatar?: string;
 	title: string;
-	created_by: string;
+	created_by: number;
 }
 
 export interface ChatMessage {

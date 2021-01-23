@@ -17,9 +17,10 @@ export class SignupPage extends Component<Props> {
 		if (signupButton.element) {
 			Handlebars.registerPartial('signup-button', signupButton.element.innerHTML);
 		}
+
 		super('div', props);
 
-		const signupForm = this.element?.querySelector(`form`);
+		const signupForm = this.element?.querySelector('form');
 
 		if (signupForm) {
 			const signupFormValidator = new FormValidator(

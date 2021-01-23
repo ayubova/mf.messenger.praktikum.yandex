@@ -1,9 +1,10 @@
+// @ts-nocheck
 import template from './template';
 import {Component} from '../../scripts/Component';
 import Button from '../../components/button/index';
 import {ChatMessage, ChatItem} from '../../types';
 import {router, Routes} from '../../index';
-import {getChats, createChat, searchUser, addUsers, deleteUsers} from './api';
+import {getChats, createChat, searchUser, addUsers, deleteUsers, getChatToken, initChat, sendMessage} from './api';
 
 interface Props {
 	chatItems: ChatItem[];
@@ -16,15 +17,17 @@ export class ChatPage extends Component<Props> {
 	private menuElement: null | HTMLElement = null;
 	// @ts-ignore
 	constructor(props: Props) {
-		Handlebars.registerHelper('isOwner', (value) => value === 'sent');
+		Handlebars.registerHelper('isOwner', value => value === 'sent');
 		const addButton = new Button({child: 'Добавить', type: 'submit'});
 		if (addButton.element) {
 			Handlebars.registerPartial('add-button', addButton.element.innerHTML);
 		}
+
 		const deleteButton = new Button({child: 'Удалить', type: 'submit'});
 		if (deleteButton.element) {
 			Handlebars.registerPartial('delete-button', deleteButton.element.innerHTML);
 		}
+
 		super('div', props);
 	}
 
@@ -71,7 +74,7 @@ export class ChatPage extends Component<Props> {
 			event.preventDefault();
 			// TODO: add form validator
 			if (addUserInput?.value) {
-				searchUser(addUserInput.value).then((res) => {
+				searchUser(addUserInput.value).then(res => {
 					const userIds = res.map((user: any) => user.id);
 					if (userIds.length) {
 						addUsers(userIds, this.props.currentChat.id);
@@ -89,7 +92,7 @@ export class ChatPage extends Component<Props> {
 			event.preventDefault();
 			// TODO: add form validator
 			if (deleteUserInput?.value) {
-				searchUser(deleteUserInput.value).then((res) => {
+				searchUser(deleteUserInput.value).then(res => {
 					const userIds = res.map((user: any) => user.id);
 					if (userIds.length) {
 						deleteUsers(userIds, this.props.currentChat.id);
@@ -100,22 +103,34 @@ export class ChatPage extends Component<Props> {
 			}
 		});
 
-		this.element?.querySelectorAll('.popup')?.forEach((popup) => {
+		this.element?.querySelectorAll('.popup')?.forEach(popup => {
 			popup.querySelector('.popup-close-button')?.addEventListener('click', () => {
 				popup.classList.remove('popup_opened');
 			});
 		});
 
-		this.element?.querySelectorAll<HTMLElement>('.chat-item')?.forEach((el) =>
+		this.element?.querySelectorAll<HTMLElement>('.chat-item')?.forEach(el =>
 			el.addEventListener('click', () => {
-				const currentChat = this.props.chatItems.find((chat) => `${chat.id}` === el.dataset.chatItemId)!;
+				const currentChat = this.props.chatItems
+					.find(chat => `${chat.id}` === el.dataset.chatItemId)!;
 				this.setProps({
 					...this.props,
-					currentChat,
+					currentChat
 				});
+				getChatToken(currentChat.id).then(({token}) =>
+					initChat(currentChat.id, token));
 			})
 		);
+		const sendMessageButton = this.element?.querySelector('#send-message');
+		sendMessageButton?.addEventListener('click', () => {
+			const messageInput = this.element?.querySelector('#send-message-input');
+			if (messageInput) {
+				sendMessage(messageInput.value);
+				messageInput.value = '';
+			}
+		});
 	}
+
 	componentDidMount() {
 		getChats().then((res: ChatItem[]) => {
 			this.setProps({...this.props, chatItems: res});
