@@ -6,10 +6,10 @@ module.exports = {
 	entry: './src/index.ts',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'main.bundle.js',
+		filename: 'main.bundle.js'
 	},
 	resolve: {
-		extensions: ['.ts', '.js', '.json'],
+		extensions: ['.ts', '.js', '.json']
 	},
 	module: {
 		rules: [
@@ -19,22 +19,22 @@ module.exports = {
 					{
 						loader: 'ts-loader',
 						options: {
-							configFile: path.resolve(__dirname, 'tsconfig.json'),
-						},
-					},
+							configFile: path.resolve(__dirname, 'tsconfig.json')
+						}
+					}
 				],
-				exclude: /(node_modules)/,
+				exclude: /(node_modules)/
 			},
 			{
 				test: /\.css$/i,
-				use: ['style-loader', 'css-loader', 'postcss-loader'],
-			},
-		],
+				use: ['style-loader', 'css-loader', 'postcss-loader']
+			}
+		]
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			title: 'Chat',
-			template: 'static/index.html',
-		}),
-	],
+			template: 'static/index.html'
+		})
+	]
 };
