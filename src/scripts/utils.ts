@@ -10,7 +10,7 @@ export function render(query: string, block: Component<any>) {
 	return root;
 }
 
-export const getFormData = <T extends Record<string, unknown>>(form: HTMLFormElement): T => {
+export const getFormData = <T extends object = any>(form: HTMLFormElement): T => {
 	let result: any = {};
 	const formData = new FormData(form);
 	for (const pair of formData.entries()) {

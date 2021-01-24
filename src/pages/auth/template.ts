@@ -13,9 +13,9 @@ export default `
         {{/each}}
         <div class="card__form_grow"></div>
           {{> auth-button }}
-        <a href="" class="card__link">
+        <div id="sign-up-link" class="card__link">
             Нет аккаунта?
-        </a>
+        </div>
     </form>
 </main>
 `;

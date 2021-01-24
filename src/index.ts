@@ -34,5 +34,5 @@ export const PAGES = {
 Object.entries(PAGES).forEach(([path, {component, initialProps}]) => router.use(path, component, initialProps).start());
 
 if (!router.getRoute(window.location.pathname)) {
-	router.go('/error-404');
+	router.go(Routes.error404);
 }

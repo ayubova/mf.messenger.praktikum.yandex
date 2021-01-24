@@ -6,6 +6,7 @@ import {showInputError, hideInputError} from '../../scripts/utils';
 import {FormValidator} from '../../scripts/FormValidator';
 import {authFormInputs} from './constants';
 import {signIn} from './api';
+import {router, Routes} from '../../index';
 interface Props {
 	inputs: Input[];
 }
@@ -31,6 +32,9 @@ export class AuthPage extends Component<Props> {
 			);
 			authFormValidator.on();
 		}
+
+		this.element?.querySelector('#sign-up-link')?.addEventListener('click',
+			() => router.go(Routes.signup));
 	}
 
 	render() {
