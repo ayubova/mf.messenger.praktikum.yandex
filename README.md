@@ -1,4 +1,4 @@
-https://ayubova-app.herokuapp.com/
+https://ayubova-app.herokuapp.com/chat
 
 Для запуска проекта:
 
