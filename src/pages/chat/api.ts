@@ -26,14 +26,16 @@ export const deleteUsers = (users: string[], chatId: number) =>
 export const getChatToken = (chatId: number) =>
 	api.post(`${CHAT_TOKEN_ENDPOINT}/${chatId}`);
 
-let webSocket = null;
-
-export const initChat = (chatId: number, token: string) => {
-	getAuthUser().then(res => {
-		const userId = res.id;
-		webSocket = new WebSocketTransport({chatId, userId, token});
-		webSocket.init();
-	});
+export const getOldMessages = () => {
+	if (WebSocketTransport.instance) {
+		WebSocketTransport.instance.sendMessage({content: '0', type: 'get old'});
+	}
 };
 
-export const sendMessage = (message: string) => webSocket.sendMessage(message);
+export const initChat = (chatId: number, userId: number, token: string, onMessage: (data: any) => void): void => {
+	WebSocketTransport.instance = new WebSocketTransport({chatId, userId, token, onMessage, onOpen: getOldMessages});
+	WebSocketTransport.instance.init();
+};
+
+export const sendMessage = (content: string) => WebSocketTransport.instance.sendMessage({content, type: 'message'});
+

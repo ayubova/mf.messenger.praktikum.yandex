@@ -4,20 +4,24 @@ import {Component} from '../../scripts/Component';
 import Button from '../../components/button/index';
 import {ChatMessage, ChatItem} from '../../types';
 import {router, Routes} from '../../index';
-import {getChats, createChat, searchUser, addUsers, deleteUsers, getChatToken, initChat, sendMessage} from './api';
+import {getChats, createChat, searchUser, addUsers, deleteUsers, getChatToken, initChat,
+	getAuthUser, sendMessage} from './api';
 
 interface Props {
-	chatItems: ChatItem[];
+	chatItems: ChatItem[] | [];
 	chatMessages: ChatMessage[];
 	chatUser: string;
 	handleProfile: () => void;
-	currentChat: ChatItem;
+    currentChat: ChatItem;
+    authUserId: number;
 }
+
 export class ChatPage extends Component<Props> {
 	private menuElement: null | HTMLElement = null;
 	// @ts-ignore
 	constructor(props: Props) {
-		Handlebars.registerHelper('isOwner', value => value === 'sent');
+		Handlebars.registerHelper('isAuthUser', id => id === props.authUserId);
+
 		const addButton = new Button({child: 'Добавить', type: 'submit'});
 		if (addButton.element) {
 			Handlebars.registerPartial('add-button', addButton.element.innerHTML);
@@ -32,7 +36,7 @@ export class ChatPage extends Component<Props> {
 	}
 
 	setEventListeners() {
-		this.menuElement = this.element?.querySelector<HTMLElement>('.menu')!;
+		this.menuElement = this.element?.querySelector<HTMLElement>('.menu');
 		this.element
 			?.querySelector('.chat-header__profile')
 			?.addEventListener('click', () => router.go(Routes.profile));
@@ -57,7 +61,6 @@ export class ChatPage extends Component<Props> {
 
 		addChatForm?.addEventListener('submit', (event: any) => {
 			event.preventDefault();
-			// TODO: add form validator
 			if (addChatInput?.value) {
 				createChat(addChatInput.value).then(() => {
 					getChats().then((res: ChatItem[]) => {
@@ -72,7 +75,6 @@ export class ChatPage extends Component<Props> {
 
 		addUserForm?.addEventListener('submit', (event: any) => {
 			event.preventDefault();
-			// TODO: add form validator
 			if (addUserInput?.value) {
 				searchUser(addUserInput.value).then(res => {
 					const userIds = res.map((user: any) => user.id);
@@ -90,7 +92,6 @@ export class ChatPage extends Component<Props> {
 
 		deleteUserForm?.addEventListener('submit', (event: any) => {
 			event.preventDefault();
-			// TODO: add form validator
 			if (deleteUserInput?.value) {
 				searchUser(deleteUserInput.value).then(res => {
 					const userIds = res.map((user: any) => user.id);
@@ -117,8 +118,25 @@ export class ChatPage extends Component<Props> {
 					...this.props,
 					currentChat
 				});
+
+				const onMessage = (data: ChatMessage|ChatMessage[]) => {
+					if (data.type === 'message') {
+						const formattedMessage = {...data, time: new Date(data.time).toLocaleString()};
+						this.setProps({...this.props, chatMessages: [...this.props.chatMessages, formattedMessage]});
+					}
+
+					if (Array.isArray(data)) {
+						const formattedMessages =
+                        data.map(message => ({...message,
+                        	userId: message.user_id,
+                        	time: new Date(message.time).toLocaleString()}))
+                        	.reverse();
+						this.setProps({...this.props, chatMessages: formattedMessages});
+					}
+				};
+
 				getChatToken(currentChat.id).then(({token}) =>
-					initChat(currentChat.id, token));
+					initChat(currentChat.id, this.props.authUserId, token, onMessage));
 			})
 		);
 		const sendMessageButton = this.element?.querySelector('#send-message');
@@ -134,6 +152,9 @@ export class ChatPage extends Component<Props> {
 	componentDidMount() {
 		getChats().then((res: ChatItem[]) => {
 			this.setProps({...this.props, chatItems: res});
+		});
+		getAuthUser().then(res => {
+			this.setProps({...this.props, authUserId: res.id});
 		});
 	}
 

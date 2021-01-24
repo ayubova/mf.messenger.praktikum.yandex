@@ -37,11 +37,13 @@ export class FormValidator<T = Record<string, string | number>> {
 	validateForm = (e: any) => {
 		e.preventDefault();
 
-		const isFormValid = this.inputs.every(({name, validationRule}) => {
+		const isFormValid = this.inputs.every(({name, validationRule}): boolean => {
 			const inputElement = this.formElement.querySelector(`input[name=${name}`);
 			if (inputElement && inputElement instanceof HTMLInputElement) {
 				return this.validate(inputElement, validationRule);
 			}
+
+			return false;
 		});
 
 		const submitButton = this.formElement.querySelector<HTMLButtonElement>('button[type=submit]');
@@ -56,7 +58,7 @@ export class FormValidator<T = Record<string, string | number>> {
 		}
 	};
 
-	validate(inputElement: HTMLInputElement, validationRule: (T: string) => boolean) {
+	validate(inputElement: HTMLInputElement, validationRule: (T: string) => boolean): boolean {
 		if (inputElement && inputElement.parentNode) {
 			const errorField = inputElement.parentNode.querySelector(this.errorFieldSelector);
 			const isValid = validationRule(inputElement.value);
@@ -70,5 +72,7 @@ export class FormValidator<T = Record<string, string | number>> {
 
 			return isValid;
 		}
+
+		return false;
 	}
 }

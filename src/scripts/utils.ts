@@ -4,13 +4,13 @@ import {API_BASE} from '../api/constants';
 export function render(query: string, block: Component<any>) {
 	const root = document.querySelector(query);
 	if (block.element && root) {
-		root && root.appendChild(block.element);
+		root.appendChild(block.element);
 	}
 
 	return root;
 }
 
-export const getFormData = <T extends object = any>(form: HTMLFormElement): T => {
+export const getFormData = <T extends Record<string, unknown>>(form: HTMLFormElement): T => {
 	let result: any = {};
 	const formData = new FormData(form);
 	for (const pair of formData.entries()) {

@@ -59,10 +59,10 @@ export class Component<Props> {
 		this.eventBus.emit(Component.EVENTS.FLOW_RENDER);
 	}
 
-	componentDidMount(oldProps?: Props) {}
+	componentDidMount() {}
 
-	_componentDidUpdate(oldProps?: Props, newProps?: Props) {
-		const response = this.componentDidUpdate(oldProps, newProps);
+	_componentDidUpdate() {
+		const response = this.componentDidUpdate();
 		if (!response) {
 			return;
 		}
@@ -70,7 +70,7 @@ export class Component<Props> {
 		this._render();
 	}
 
-	componentDidUpdate(oldProps?: Props, newProps?: Props) {
+	componentDidUpdate() {
 		return true;
 	}
 

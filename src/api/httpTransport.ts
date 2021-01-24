@@ -64,7 +64,7 @@ export class HTTPTransport {
 
 				if (xhr.status === 200) {
 					resolve(response);
-				} else if (xhr.status == 401) {
+				} else if (xhr.status === 401) {
 					router.go(Routes.auth);
 					_reject(response);
 				} else {

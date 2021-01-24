@@ -16,7 +16,8 @@ export interface ChatItem {
 
 export interface ChatMessage {
 	content: string;
-	image?: string;
-	dateTime: string;
-	type: string;
+	time: string;
+    type: string;
+    user_id: number;
+    chat_id: number;
 }

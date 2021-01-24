@@ -129,11 +129,11 @@ export default `
 				</div>
                 
 <div class="message-container">
-<div class="message-container__date">19 июня</div>
+<div class="message-container__date"></div>
 
 {{#each chatMessages}}
 <div
-class={{#if (isOwner type)}}message-container__sent{{else}}message-container__received{{/if}}>
+class={{#if (isAuthUser userId)}}message-container__sent{{else}}message-container__received{{/if}}>
 {{#if image}}
 <img
 class="message-container__image"
@@ -148,7 +148,7 @@ src={{image}}
             <img src="src/images/doubleCheckIcon.svg" alt="checked">
         </span>
         {{/if}}
-    <div class="message-container__time">{{dateTime}}</div>
+    <div class="message-container__time">{{time}}</div>
    </div>
    {{/each}}
 </div>
