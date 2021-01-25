@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {queryStringify} from './utils';
 import {API_URL} from './constants';
 import {router, Routes} from '../index';
@@ -11,27 +10,28 @@ const METHODS = {
 };
 
 export class HTTPTransport {
-	constructor(base) {
-		this._base = base;
-	}
+    private _base: string;
+    constructor(base: string) {
+    	this._base = base;
+    }
 
-	get = (url, options = {}): any => {
+	get = (url: string, options: Record<string, any> = {}): any => {
 		return this.request(url, {...options, method: METHODS.GET}, options.timeout);
 	};
 
-	post = (url, options = {}) => {
+	post = (url: string, options: Record<string, any> = {}) => {
 		return this.request(url, {...options, method: METHODS.POST}, options.timeout);
 	};
 
-	put = (url, options = {}) => {
+	put = (url: string, options: Record<string, any> = {}) => {
 		return this.request(url, {...options, method: METHODS.PUT}, options.timeout);
 	};
 
-	delete = (url, options = {}) => {
+	delete = (url: string, options: Record<string, any> = {}) => {
 		return this.request(url, {...options, method: METHODS.DELETE}, options.timeout);
 	};
 
-	request = (url, options = {}, timeout = 5000): Promise<any> => {
+	request = (url: string, options: Record<string, any> = {}, timeout = 5000): Promise<any> => {
 		const {headers = {}, method, data} = options;
 		url = `${this._base}/${url}`;
 

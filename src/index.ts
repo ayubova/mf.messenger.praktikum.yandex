@@ -16,21 +16,24 @@ export const router = new Router('#app');
 export enum Routes {
 	auth = '/auth',
 	signup = '/signup',
-	error404 = '/error-404',
+	error404 = '/404',
 	error500 = '/error-500',
 	profile = '/profile',
-	chat = '/chat',
+    chat = '/chat',
+    main = '/',
 }
 
 export const PAGES = {
 	[Routes.auth]: {component: AuthPage, initialProps: authProps},
 	[Routes.signup]: {component: SignupPage, initialProps: signupProps},
-	[Routes.error404]: {component: ErrorBlock, initialProps: error404Props},
 	[Routes.error500]: {component: ErrorBlock, initialProps: error500Props},
 	[Routes.profile]: {component: ProfilePage, initialProps: profileProps},
-	[Routes.chat]: {component: ChatPage, initialProps: chatProps}
+	[Routes.chat]: {component: ChatPage, initialProps: chatProps},
+	[Routes.main]: {component: ChatPage, initialProps: chatProps},
+	[Routes.error404]: {component: ErrorBlock, initialProps: error404Props}
 };
 
+// @ts-ignore
 Object.entries(PAGES).forEach(([path, {component, initialProps}]) => router.use(path, component, initialProps).start());
 
 if (!router.getRoute(window.location.pathname)) {
