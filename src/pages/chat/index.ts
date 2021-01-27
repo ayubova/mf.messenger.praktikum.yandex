@@ -1,8 +1,7 @@
-// @ts-nocheck
 import template from './template';
 import {Component} from '../../scripts/Component';
 import Button from '../../components/button/index';
-import {ChatMessage, ChatItem} from '../../types';
+import {ChatMessage, ChatItem, User} from '../../types';
 import {router, Routes} from '../../index';
 import {getChats, createChat, searchUser, addUsers, deleteUsers, getChatToken, initChat,
 	getAuthUser, sendMessage} from './api';
@@ -10,17 +9,16 @@ import {getChats, createChat, searchUser, addUsers, deleteUsers, getChatToken, i
 interface Props {
 	chatItems: ChatItem[] | [];
 	chatMessages: ChatMessage[];
-	chatUser: string;
 	handleProfile: () => void;
     currentChat: ChatItem;
-    authUserId: number;
+    authUser: User;
 }
 
 export class ChatPage extends Component<Props> {
 	private menuElement: null | HTMLElement = null;
 	// @ts-ignore
 	constructor(props: Props) {
-		Handlebars.registerHelper('isAuthUser', id => id === props.authUserId);
+		Handlebars.registerHelper('isAuthUser', id => id === props.authUser.Id);
 
 		const addButton = new Button({child: 'Добавить', type: 'submit'});
 		if (addButton.element) {
@@ -36,7 +34,7 @@ export class ChatPage extends Component<Props> {
 	}
 
 	setEventListeners() {
-		this.menuElement = this.element?.querySelector<HTMLElement>('.menu');
+		this.menuElement = this.element!.querySelector<HTMLElement>('.menu');
 		this.element
 			?.querySelector('.chat-header__profile')
 			?.addEventListener('click', () => router.go(Routes.profile));
@@ -119,7 +117,7 @@ export class ChatPage extends Component<Props> {
 					currentChat
 				});
 
-				const onMessage = (data: ChatMessage|ChatMessage[]) => {
+				const onMessage = (data: ChatMessage) => {
 					if (data.type === 'message') {
 						const formattedMessage = {...data, time: new Date(data.time).toLocaleString()};
 						this.setProps({...this.props, chatMessages: [...this.props.chatMessages, formattedMessage]});
@@ -136,12 +134,12 @@ export class ChatPage extends Component<Props> {
 				};
 
 				getChatToken(currentChat.id).then(({token}) =>
-					initChat(currentChat.id, this.props.authUserId, token, onMessage));
+					initChat(currentChat.id, this.props.authUser.id, token, onMessage));
 			})
 		);
 		const sendMessageButton = this.element?.querySelector('#send-message');
 		sendMessageButton?.addEventListener('click', () => {
-			const messageInput = this.element?.querySelector('#send-message-input');
+			const messageInput: HTMLInputElement | null = this.element!.querySelector('#send-message-input');
 			if (messageInput) {
 				sendMessage(messageInput.value);
 				messageInput.value = '';
@@ -153,8 +151,8 @@ export class ChatPage extends Component<Props> {
 		getChats().then((res: ChatItem[]) => {
 			this.setProps({...this.props, chatItems: res});
 		});
-		getAuthUser().then(res => {
-			this.setProps({...this.props, authUserId: res.id});
+		getAuthUser().then((authUser: User) => {
+			this.setProps({...this.props, authUser});
 		});
 	}
 

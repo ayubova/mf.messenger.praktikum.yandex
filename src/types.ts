@@ -21,3 +21,14 @@ export interface ChatMessage {
     user_id: number;
     chat_id: number;
 }
+
+export interface User {
+  id: number;
+  first_name: string;
+  second_name: string;
+  display_name: string;
+  login: string;
+  email: string;
+  phone: string;
+  avatar: string;
+}
