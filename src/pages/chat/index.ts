@@ -18,7 +18,7 @@ export class ChatPage extends Component<Props> {
 	private menuElement: null | HTMLElement = null;
 	// @ts-ignore
 	constructor(props: Props) {
-		Handlebars.registerHelper('isAuthUser', id => id === props.authUser.Id);
+		Handlebars.registerHelper('isAuthUser', id => id === props.authUser.id);
 
 		const addButton = new Button({child: 'Добавить', type: 'submit'});
 		if (addButton.element) {
